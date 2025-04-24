@@ -298,9 +298,229 @@
     </div>
 
     <!-- Modals if needed -->
+    <div id="editAccountModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal__header">
+                <h2 class="modal__title">Cập nhật thông tin tài khoản</h2>
+                <button id="closeModalButton" class="modal__close-button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal__body">
+                <!-- Section 1: General Info -->
+                <div class="form-section-with-description">
+                    <!-- Left: Description -->
+                    <div class="modal__description modal__description--fixed-width">
+                        <h3>Thông tin chung</h3>
+                        <p>Cập nhật thông tin chung về tài khoản</p>
+                    </div>
+                    <!-- Right: Form Fields -->
+                    <div class="modal__form-section">
+                        <!-- General Info Fields -->
+                        <div class="form-group">
+                            <div class="avatar-upload">
+                                <span class="avatar-upload__preview">
+                                    <!-- User Avatar -->
+                                    <img src="./images/Avatar_edit.png" alt="Nguyễn Văn Nam">
+                                </span>
+                                <div class="avatar-upload__dropzone">
+                                    <div class="avatar-upload__dropzone-content">
+                                        <span class="avatar-upload__dropzone-icon">
+                                            <img src="./images/upload-cloud.png" alt="upload">
+                                        </span>
+                                        <div class="avatar-upload__text">
+                                            <label for="file-upload" class="avatar-upload__upload-label">
+                                                <span>Click to upload</span>
+                                            </label>
+                                            <span>or drag and drop</span>
+                                            <input id="file-upload" name="file-upload" type="file"
+                                                class="avatar-upload__file-input"
+                                                accept="image/svg+xml, image/png, image/jpeg, image/gif">
+                                        </div>
+                                        <p class="avatar-upload__hint">SVG, PNG, JPG or GIF (max. 400x400px)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName" class="form__label">Họ và tên</label>
+                            <input type="text" name="fullName" id="fullName" value="Nguyễn Văn Nam"
+                                class="form__input">
+                        </div>
+                        <div class="form-group form-group--grid">
+                            <div>
+                                <label for="dob" class="form__label">Ngày sinh</label>
+                                <div class="form__input-container form__input-container--with-icon">
+                                    <img src="./images/calendar.svg" alt="calendar" class="form__input-icon">
+                                    <input type="text" name="dob" id="dob" value="30/08/2001"
+                                        class="form__input form__input--with-icon">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="phone" class="form__label">Số điện thoại</label>
+                                <div class="form__input-container form__input-container--with-icon">
+                                    <img src="./images/phone.svg" alt="phone" class="form__input-icon">
+                                    <input type="tel" name="phone" id="phone" value="0988662345"
+                                        class="form__input form__input--with-icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group--grid">
+                            <div>
+                                <label for="email" class="form__label">Email</label>
+                                <div class="form__input-container form__input-container--with-icon">
+                                    <span class="form__input-icon">
+                                        <i class="far fa-envelope"></i>
+                                    </span>
+                                    <input type="email" name="email" id="email" value="namtran94@phenikaa.com"
+                                        class="form__input form__input--with-icon">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="address" class="form__label">Quê quán</label>
+                                <div class="form__input-container form__input-container--with-icon">
+                                    <img src="./images/MapPin.svg" alt="map-marker" class="form__input-icon">
+                                    <input type="text" name="address" id="address" value="Hà Nam"
+                                        class="form__input form__input--with-icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="accountType" class="form__label">Loại tài khoản</label>
+                            <select id="accountType" name="accountType" class="form__select">
+                                <option value="Sinh viên" selected>Sinh viên</option>
+                                <option value="Nhà trường">Nhà trường</option>
+                                <option value="Giảng viên">Giảng viên</option>
+                                <option value="Trợ giảng">Trợ giảng</option>
+                                <option value="Nhân viên dịch vụ">Nhân viên dịch vụ</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <hr class="modal__divider">
+
+                <!-- Section 2: Student Info -->
+                <div class="form-section-with-description">
+                    <!-- Left: Description -->
+                    <div class="modal__description modal__description--fixed-width">
+                        <h3>Thông tin sinh viên</h3>
+                        <p>Cập nhật thông tin liên quan đến loại tài khoản</p>
+                    </div>
+                    <!-- Right: Form Fields -->
+                    <div class="modal__form-section">
+                        <!-- Student Info Fields -->
+                        <div class="form-group">
+                            <label for="school" class="form__label">Trường</label>
+                            <select id="school" name="school" class="form__select">
+                                <option>Chọn trường của bạn</option>
+                                <option selected>Học viện công nghệ BCVT (PTIT)</option>
+                                <option>Trường Đại học Phenikaa</option>
+                                <option>Trường Đại học Khoa học Tự nhiên</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-group--grid">
+                            <div>
+                                <label for="studentId" class="form__label">Mã sinh viên</label>
+                                <input type="text" name="studentId" id="studentId" value="D12DCCN114"
+                                    class="form__input">
+                            </div>
+                            <div>
+                                <label for="course" class="form__label">Khóa</label>
+                                <input type="text" name="course" id="course" value="2020-2025"
+                                    class="form__input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="major" class="form__label">Chuyên ngành</label>
+                            <select id="major" name="major" class="form__select">
+                                <option>Chọn chuyên ngành của bạn</option>
+                                <option>Khoa học Máy tính</option>
+                                <option selected>Công nghệ Thông tin</option>
+                                <option>Quản trị Kinh doanh</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal__footer">
+                <button id="cancelModalButton"
+                    class="button modal__footer-button modal__footer-button--cancel">Hủy</button>
+                <button type="submit" class="button modal__footer-button modal__footer-button--submit">Lưu cập nhật</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Link to JS file -->
     <script src="js/main.js" defer></script>
-    <!-- Add specific JS for this page if needed later -->
+    <!-- Add specific JS for this page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get modal elements
+            const editAccountModal = document.getElementById('editAccountModal');
+            const editButton = document.querySelector('.profile-header__edit-button');
+            const closeModalButton = document.getElementById('closeModalButton');
+            const cancelModalButton = document.getElementById('cancelModalButton');
+
+            // Function to open modal
+            const openEditModal = () => {
+                if (editAccountModal) {
+                    editAccountModal.classList.remove('hidden');
+                    console.log('Edit Account Modal opened');
+                } else {
+                    console.error('Edit Account Modal element not found for opening');
+                }
+            };
+
+            // Function to close modal
+            const closeEditModal = () => {
+                if (editAccountModal) {
+                    editAccountModal.classList.add('hidden');
+                    console.log('Edit Account Modal closed');
+                } else {
+                    console.error('Edit Account Modal element not found for closing');
+                }
+            };
+
+            // Attach event listeners
+            if (editButton) {
+                editButton.addEventListener('click', openEditModal);
+            }
+
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', closeEditModal);
+            }
+
+            if (cancelModalButton) {
+                cancelModalButton.addEventListener('click', closeEditModal);
+            }
+
+            // Close modal when clicking outside
+            if (editAccountModal) {
+                editAccountModal.addEventListener('click', (event) => {
+                    const modalContent = editAccountModal.querySelector('.modal-content');
+                    if (event.target === editAccountModal && modalContent && !modalContent.contains(event.target)) {
+                        closeEditModal();
+                    }
+                });
+            }
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && editAccountModal && !editAccountModal.classList.contains('hidden')) {
+                    closeEditModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
