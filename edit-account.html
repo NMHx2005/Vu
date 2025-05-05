@@ -578,61 +578,58 @@
                 return typeClasses[type] || 'gray';
             }
 
-            // Thông báo toast
+            // Toast notification chuẩn hóa cho xóa, thêm, cập nhật
             function showToast(type, message) {
-                const existingToast = document.querySelector('.toast');
+                // Xóa toast cũ nếu có
+                const existingToast = document.querySelector('.toast-custom');
                 if (existingToast) existingToast.remove();
 
-                const toast = document.createElement('div');
-                toast.className = `toast toast--${type}`;
-                const iconSvg = type === 'success' ?
-                    `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2">
-                        <path d="M20 6L9 17l-5-5"/>
-                    </svg>` :
-                    `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 8v4"/><path d="M12 16h.01"/>
-                    </svg>`;
-                toast.innerHTML = `
-                    <div class="toast__content" style="display: flex; align-items: center; gap: 12px;">
-                        <span class="toast__icon" style="
-                            display: flex; align-items: center; justify-content: center;
-                            width: 36px; height: 36px; border-radius: 50%;
-                            background: ${type === 'success' ? '#E6F4EA' : '#FDECEA'};
-                        ">
-                            ${iconSvg}
-                        </span>
-                        <span class="toast__message" style="
-                            color: #22223B; font-size: 16px; font-weight: 500;
-                        ">${message}</span>
-                    </div>
-                `;
+                // Chọn icon và màu theo type
+                let iconHtml = '', bgColor = '';
+                if (type === 'delete') {
+                    iconHtml = `<i class=\"fas fa-trash-alt\" style=\"color:#B45309;font-size:22px;\"></i>`;
+                    bgColor = '#FDECEA';
+                } else if (type === 'add') {
+                    iconHtml = `<i class=\"fas fa-plus-circle\" style=\"color:#2563EB;font-size:22px;\"></i>`;
+                    bgColor = '#EFF6FF';
+                } else if (type === 'update' || type === 'success') {
+                    iconHtml = `<i class=\"fas fa-check-circle\" style=\"color:#16A34A;font-size:22px;\"></i>`;
+                    bgColor = '#E6F4EA';
+                } else if (type === 'error') {
+                    iconHtml = `<i class=\"fas fa-times-circle\" style=\"color:#DC2626;font-size:22px;\"></i>`;
+                    bgColor = '#FDECEA';
+                }
 
+                // Tạo toast
+                const toast = document.createElement('div');
+                toast.className = 'toast-custom';
+                toast.innerHTML = `
+                    <span style=\"display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:${bgColor};margin-right:16px;\">${iconHtml}</span>
+                    <span style=\"color:#22223B;font-size:16px;font-weight:500;\">${message}</span>
+                `;
                 toast.style.cssText = `
                     position: fixed;
                     top: 40px;
                     left: 50%;
-                    transform: translateX(-50%) translateY(-20px);
+                    transform: translateX(-50%);
                     background: #fff;
                     color: #22223B;
                     padding: 16px 32px;
                     border-radius: 10px;
                     box-shadow: 0 2px 16px rgba(0,0,0,0.15);
-                    z-index: 1000;
-                    opacity: 0;
-                    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+                    z-index: 9999;
                     min-width: 320px;
                     max-width: 90vw;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    opacity: 0;
+                    transition: opacity 0.3s;
                 `;
-
                 document.body.appendChild(toast);
-                toast.offsetHeight;
-                toast.style.opacity = '1';
-                toast.style.transform = 'translateX(-50%) translateY(0)';
-
+                setTimeout(() => { toast.style.opacity = '1'; }, 10);
                 setTimeout(() => {
                     toast.style.opacity = '0';
-                    toast.style.transform = 'translateX(-50%) translateY(-20px)';
                     setTimeout(() => toast.remove(), 300);
                 }, 3000);
             }
@@ -700,6 +697,24 @@
                     closeEditModal();
                 }
             });
+
+            // Ẩn/hiện thông tin sinh viên khi chọn loại tài khoản
+            const accountTypeSelect = document.getElementById('accountType');
+            const studentInfoSection = document.getElementById('studentInfoSectionContainer');
+            function toggleStudentInfo() {
+                if (accountTypeSelect && studentInfoSection) {
+                    if (accountTypeSelect.value === 'Sinh viên') {
+                        studentInfoSection.classList.remove('hidden');
+                    } else {
+                        studentInfoSection.classList.add('hidden');
+                    }
+                }
+            }
+            if (accountTypeSelect && studentInfoSection) {
+                accountTypeSelect.addEventListener('change', toggleStudentInfo);
+                // Gọi khi mở modal để đúng trạng thái ban đầu
+                toggleStudentInfo();
+            }
         });
     </script>
 </body>
