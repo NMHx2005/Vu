@@ -16,9 +16,9 @@
     --color-status-green-bg: #EBFBF3;
     --color-status-green-text: #1F9254;
     --color-status-orange-bg: #FFF8EB;
-    --color-status-orange-text: #F18A00;
-    --color-status-red-bg: #FEF2F2;
-    --color-status-red-text: #DC2626;
+    --color-status-orange-text: #B54708;
+    --color-status-red-bg: #FDF2FA;
+    --color-status-red-text: #C11574;
     --font-family-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
@@ -1582,4 +1582,8 @@ body {
 .status-badge--red {
     background-color: var(--color-status-red-bg);
     color: var(--color-status-red-text);
+}
+.status-badge--purple {
+    background-color: #ECFDF3;
+    color: #027A48;
 }

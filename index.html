@@ -14,18 +14,18 @@
 
 <body>
     <div class="page-container">
-        <!-- Sidebar -->
+        <!-- Thanh bên -->
         <aside class="sidebar">
             <div class="sidebar__header">
                 <img src="./images/logo.png" alt="Phenikaa University Logo" class="sidebar__logo">
             </div>
             <nav class="sidebar__nav">
-                <!-- Search Input -->
+                <!-- Ô tìm kiếm -->
                 <div class="sidebar__search-container">
                     <input type="text" placeholder="Tìm kiếm" class="sidebar__search-input">
                     <i class="fas fa-search sidebar__search-icon"></i>
                 </div>
-                <!-- Navigation Links -->
+                <!-- Các liên kết điều hướng -->
                 <a href="#" class="sidebar__nav-item sidebar__nav-item--active">
                     <img src="./images/users.png" alt="user" class="sidebar__nav-item-icon">
                     Tài khoản
@@ -81,13 +81,13 @@
             </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Nội dung chính -->
         <main class="main-content">
-            <!-- Top Section -->
+            <!-- Phần đầu trang -->
             <div class="main-content__header-section">
-                <!-- Breadcrumbs & Header -->
+                <!-- Thanh điều hướng & Tiêu đề -->
                 <div>
-                    <!-- Breadcrumbs -->
+                    <!-- Thanh điều hướng -->
                     <nav class="breadcrumbs">
                         <ol class="breadcrumbs__list">
                             <li class="breadcrumbs__item">
@@ -102,10 +102,10 @@
                         </ol>
                     </nav>
 
-                    <!-- Page Header -->
+                    <!-- Tiêu đề trang -->
                     <div class="page-header">
                         <h1 class="page-header__title">Danh sách tài khoản</h1>
-                        <!-- Actions -->
+                        <!-- Các hành động -->
                         <div class="page-header__actions">
                             <button class="button">
                                 <img src="./images/ms_excel.svg" alt="excel" class="button__icon"> Tải danh sách
@@ -120,7 +120,7 @@
                     </div>
                 </div>
 
-                <!-- Account Types Tabs -->
+                <!-- Các tab loại tài khoản -->
                 <div class="account-tabs">
                     <div class="account-tabs__list">
                         <button class="account-tabs__button account-tabs__button--active">Tất cả <span
@@ -139,9 +139,9 @@
                 </div>
             </div>
 
-            <!-- Content Area -->
+            <!-- Khu vực nội dung -->
             <div class="main-content__body">
-                <!-- Filters and Search Bar -->
+                <!-- Bộ lọc và thanh tìm kiếm -->
                 <div class="filters-search">
                     <button class="button filters-search__filter-button">
                         <img src="./images/Filters lines.png" alt="filter" class="button__icon"> Bộ lọc
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <!-- Table -->
+                <!-- Bảng dữ liệu -->
                 <div class="table-container">
                     <div class="table-scroll-wrapper">
                         <table class="data-table">
@@ -172,7 +172,7 @@
                                 </tr>
                             </thead>
                             <tbody class="data-table__body">
-                                <!-- Row 1 -->
+                                <!-- Dòng 1 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -196,7 +196,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Row 2 -->
+                                <!-- Dòng 2 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -220,7 +220,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Row 3 -->
+                                <!-- Dòng 3 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -244,7 +244,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Row 4 -->
+                                <!-- Dòng 4 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -268,7 +268,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Row 5 -->
+                                <!-- Dòng 5 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -292,7 +292,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Row 6 -->
+                                <!-- Dòng 6 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -316,7 +316,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- Row 7 -->
+                                <!-- Dòng 7 -->
                                 <tr>
                                     <td><input type="checkbox" class="form-checkbox"></td>
                                     <td><strong>TK002341</strong></td>
@@ -345,7 +345,7 @@
                     </div>
                 </div>
 
-                <!-- Pagination -->
+                <!-- Phân trang -->
                 <div class="pagination">
                     <button class="pagination__button" disabled>
                         <i class="fas fa-chevron-left pagination__button-icon pagination__button-icon--left"></i> Trang
@@ -362,11 +362,10 @@
         </main>
     </div>
 
-    <!-- Add Account Modal -->
-
+    <!-- Modal thêm tài khoản -->
     <div id="addAccountModal" class="modal-overlay hidden">
         <div class="modal-content">
-            <!-- Modal Header -->
+            <!-- Tiêu đề Modal -->
             <div class="modal__header">
                 <h2 class="modal__title">Thêm tài khoản</h2>
                 <button id="closeModalButton" class="modal__close-button">
@@ -377,162 +376,164 @@
                 </button>
             </div>
 
-            <!-- Modal Body -->
+            <!-- Nội dung Modal -->
             <div class="modal__body">
-                <!-- Section 1: General Info -->
-                <div class="form-section-with-description">
-                    <!-- Left: Description -->
-                    <div class="modal__description modal__description--fixed-width">
-                        <h3>Thông tin chung</h3>
-                        <p>Cập nhật thông tin chung về tài khoản</p>
-                    </div>
-                    <!-- Right: Form Fields -->
-                    <div class="modal__form-section">
-                        <!-- General Info Fields -->
-                        <div class="form-group">
-                            <div class="avatar-upload">
-                                <span class="avatar-upload__preview">
-                                    <!-- Default Icon -->
-                                    <span class="avatar-upload__placeholder-icon">
-                                        <svg fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                        </svg>
-                                    </span>
-                                    <!-- Image preview will be handled by JS -->
-                                </span>
-                                <div class="avatar-upload__dropzone">
-                                    <div class="avatar-upload__dropzone-content">
-                                        <span class="avatar-upload__dropzone-icon">
-                                            <img src="./images/upload-cloud.png" alt="upload">
+                <form id="addAccountForm">
+                    <!-- Phần 1: Thông tin chung -->
+                    <div class="form-section-with-description">
+                        <!-- Bên trái: Mô tả -->
+                        <div class="modal__description modal__description--fixed-width">
+                            <h3>Thông tin chung</h3>
+                            <p>Cập nhật thông tin chung về tài khoản</p>
+                        </div>
+                        <!-- Bên phải: Các trường biểu mẫu -->
+                        <div class="modal__form-section">
+                            <!-- Các trường thông tin chung -->
+                            <div class="form-group">
+                                <div class="avatar-upload">
+                                    <span class="avatar-upload__preview">
+                                        <!-- Biểu tượng mặc định -->
+                                        <span class="avatar-upload__placeholder-icon">
+                                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M24ta 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
                                         </span>
-                                        <div class="avatar-upload__text">
-                                            <label for="file-upload" class="avatar-upload__upload-label">
-                                                <span>Click to upload</span>
-                                            </label>
-                                            <span>or drag and drop</span>
-                                            <input id="file-upload" name="file-upload" type="file"
-                                                class="avatar-upload__file-input"
-                                                accept="image/svg+xml, image/png, image/jpeg, image/gif">
+                                        <!-- Xem trước ảnh sẽ được xử lý bởi JS -->
+                                    </span>
+                                    <div class="avatar-upload__dropzone">
+                                        <div class="avatar-upload__dropzone-content">
+                                            <span class="avatar-upload__dropzone-icon">
+                                                <img src="./images/upload-cloud.png" alt="upload">
+                                            </span>
+                                            <div class="avatar-upload__text">
+                                                <label for="file-upload" class="avatar-upload__upload-label">
+                                                    <span>Click to upload</span>
+                                                </label>
+                                                <span>or drag and drop</span>
+                                                <input id="file-upload" name="file-upload" type="file"
+                                                    class="avatar-upload__file-input"
+                                                    accept="image/svg+xml, image/png, image/jpeg, image/gif">
+                                            </div>
+                                            <p class="avatar-upload__hint">SVG, PNG, JPG or GIF (max. 400x400px)</p>
                                         </div>
-                                        <p class="avatar-upload__hint">SVG, PNG, JPG or GIF (max. 400x400px)</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fullName" class="form__label">Họ và tên</label>
-                            <input type="text" name="fullName" id="fullName" placeholder="Nhập tên của bạn"
-                                class="form__input">
-                        </div>
-                        <div class="form-group form-group--grid">
-                            <div>
-                                <label for="dob" class="form__label">Ngày sinh</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <img src="./images/calendar.svg" alt="calendar" class="form__input-icon">
-                                    <input type="text" name="dob" id="dob" placeholder="DD/MM/YYYY"
-                                        class="form__input form__input--with-icon">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="phone" class="form__label">Số điện thoại</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <img src="./images/phone.svg" alt="phone" class="form__input-icon">
-                                    <input type="tel" name="phone" id="phone" placeholder="Nhập số điện thoại"
-                                        class="form__input form__input--with-icon">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group form-group--grid">
-                            <div>
-                                <label for="email" class="form__label">Email</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <span class="form__input-icon">
-                                        <i class="far fa-envelope"></i>
-                                    </span>
-                                    <input type="email" name="email" id="email" placeholder="Nhập email của bạn"
-                                        class="form__input form__input--with-icon">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="address" class="form__label">Quê quán</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <img src="./images/MapPin.svg" alt="map-marker" class="form__input-icon">
-                                    <input type="text" name="address" id="address" placeholder="Nhập quê quán"
-                                        class="form__input form__input--with-icon">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="accountType" class="form__label">Loại tài khoản</label>
-                            <select id="accountType" name="accountType" class="form__select">
-                                <option value="Sinh viên">Sinh viên</option>
-                                <option value="Nhà trường">Nhà trường</option>
-                                <option value="Giảng viên">Giảng viên</option>
-                                <option value="Trợ giảng">Trợ giảng</option>
-                                <option value="Nhân viên dịch vụ">Nhân viên dịch vụ</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Divider -->
-                <hr class="modal__divider">
-
-                <!-- Section 2: Student Info (Hidden/Shown by JS) -->
-                <div id="studentInfoSectionContainer" class="form-section-with-description hidden">
-                    <!-- Left: Description -->
-                    <div class="modal__description modal__description--fixed-width">
-                        <h3>Thông tin sinh viên</h3>
-                        <p>Cập nhật thông tin liên quan đến loại tài khoản</p>
-                    </div>
-                    <!-- Right: Form Fields -->
-                    <div id="studentInfoForm" class="modal__form-section">
-                        <!-- Student Info Fields -->
-                        <div class="form-group">
-                            <label for="school" class="form__label">Trường</label>
-                            <select id="school" name="school" class="form__select">
-                                <option>Chọn trường của bạn</option>
-                                <option>Trường Đại học Phenikaa</option>
-                                <option>Trường Đại học Khoa học Tự nhiên</option>
-                            </select>
-                        </div>
-                        <div class="form-group form-group--grid">
-                            <div>
-                                <label for="studentId" class="form__label">Mã sinh viên</label>
-                                <input type="text" name="studentId" id="studentId" placeholder="Nhập mã sinh viên"
+                            <div class="form-group">
+                                <label for="fullName" class="form__label">Họ và tên</label>
+                                <input type="text" name="fullName" id="fullName" placeholder="Nhập tên của bạn"
                                     class="form__input">
                             </div>
-                            <div>
-                                <label for="course" class="form__label">Khóa</label>
-                                <input type="text" name="course" id="course" placeholder="Khóa học của bạn"
-                                    class="form__input">
+                            <div class="form-group form-group--grid">
+                                <div>
+                                    <label for="dob" class="form__label">Ngày sinh</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <img src="./images/calendar.svg" alt="calendar" class="form__input-icon">
+                                        <input name="dob" id="dob" class="form__input form__input--with-icon">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="phone" class="form__label">Số điện thoại</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <img src="./images/phone.svg" alt="phone" class="form__input-icon">
+                                        <input type="tel" name="phone" id="phone" placeholder="Nhập số điện thoại"
+                                            class="form__input form__input--with-icon">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group--grid">
+                                <div>
+                                    <label for="email" class="form__label">Email</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <span class="form__input-icon">
+                                            <i class="far fa-envelope"></i>
+                                        </span>
+                                        <input type="email" name="email" id="email" placeholder="Nhập email của bạn"
+                                            class="form__input form__input--with-icon">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="address" class="form__label">Quê quán</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <img src="./images/MapPin.svg" alt="map-marker" class="form__input-icon">
+                                        <input type="text" name="address" id="address" placeholder="Nhập quê quán"
+                                            class="form__input form__input--with-icon">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="accountType" class="form__label">Loại tài khoản</label>
+                                <select id="accountType" name="accountType" class="form__select">
+                                    <option value="">Chọn loại tài khoản</option>
+                                    <option value="Sinh viên">Sinh viên</option>
+                                    <option value="Nhà trường">Nhà trường</option>
+                                    <option value="Giảng viên">Giảng viên</option>
+                                    <option value="Trợ giảng">Trợ giảng</option>
+                                    <option value="Nhân viên dịch vụ">Nhân viên dịch vụ</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="major" class="form__label">Chuyên ngành</label>
-                            <select id="major" name="major" class="form__select">
-                                <option>Chọn chuyên ngành của bạn</option>
-                                <option>Khoa học Máy tính</option>
-                                <option>Công nghệ Thông tin</option>
-                                <option>Quản trị Kinh doanh</option>
-                            </select>
+                    </div>
+
+                    <!-- Đường phân cách -->
+                    <hr class="modal__divider">
+
+                    <!-- Phần 2: Thông tin sinh viên (Ẩn/Hiện bởi JS) -->
+                    <div id="studentInfoSectionContainer" class="form-section-with-description hidden">
+                        <!-- Bên trái: Mô tả -->
+                        <div class="modal__description modal__description--fixed-width">
+                            <h3>Thông tin sinh viên</h3>
+                            <p>Cập nhật thông tin liên quan đến loại tài khoản</p>
+                        </div>
+                        <!-- Bên phải: Các trường biểu mẫu -->
+                        <div id="studentInfoForm" class="modal__form-section">
+                            <!-- Các trường thông tin sinh viên -->
+                            <div class="form-group">
+                                <label for="school" class="form__label">Trường</label>
+                                <select id="school" name="school" class="form__select">
+                                    <option value="">Chọn trường của bạn</option>
+                                    <option value="Học viện công nghệ BCVT (PTIT)">Học viện công nghệ BCVT (PTIT)</option>
+                                    <option value="Trường Đại học Phenikaa">Trường Đại học Phenikaa</option>
+                                    <option value="Trường Đại học Khoa học Tự nhiên">Trường Đại học Khoa học Tự nhiên</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--grid">
+                                <div>
+                                    <label for="studentId" class="form__label">Mã sinh viên</label>
+                                    <input type="text" name="studentId" id="studentId" placeholder="Nhập mã sinh viên"
+                                        class="form__input">
+                                </div>
+                                <div>
+                                    <label for="course" class="form__label">Khóa</label>
+                                    <input type="text" name="course" id="course" placeholder="Khóa học của bạn"
+                                        class="form__input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="major" class="form__label">Chuyên ngành</label>
+                                <select id="major" name="major" class="form__select">
+                                    <option value="">Chọn chuyên ngành của bạn</option>
+                                    <option value="Khoa học Máy tính">Khoa học Máy tính</option>
+                                    <option value="Công nghệ Thông tin">Công nghệ Thông tin</option>
+                                    <option value="Quản trị Kinh doanh">Quản trị Kinh doanh</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Modal Footer -->
-            <div class="modal__footer">
-                <button id="cancelModalButton"
-                    class="button modal__footer-button modal__footer-button--cancel">Hủy</button>
-                <button type="submit" class="button modal__footer-button modal__footer-button--submit">Thêm tài
-                    khoản</button>
+                    <!-- Chân trang Modal (đặt trong form) -->
+                    <div class="modal__footer">
+                        <button id="cancelModalButton"
+                            class="button modal__footer-button modal__footer-button--cancel">Hủy</button>
+                        <button type="submit" class="button modal__footer-button modal__footer-button--submit">Thêm tài khoản</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Modal xác nhận xóa -->
     <div id="deleteConfirmModal" class="modal-overlay hidden">
         <div class="confirm-modal-content">
             <h2 class="confirm-modal__title">Xác nhận</h2>
@@ -546,7 +547,7 @@
         </div>
     </div>
 
-    <!-- Success Toast Notification -->
+    <!-- Thông báo thành công khi xóa -->
     <div id="deleteSuccessToast" class="toast toast--success hidden">
         <span class="toast__icon">
             <i class="fas fa-trash-alt"></i>
@@ -554,7 +555,9 @@
         <span class="toast__message">Đã xóa tài khoản</span>
     </div>
 
-    <!-- Basic JS for Modal Toggle -->
+    <!-- JS cơ bản để bật/tắt Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/account-list.js" defer></script>
     <script src="js/main.js" defer></script>
 </body>
 

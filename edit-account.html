@@ -5,28 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin cá nhân - Phenikaa University</title>
     <link href="./css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="page-container">
-        <!-- Sidebar (Assume same as index.html) -->
+        <!-- Thanh bên (Giả sử giống với index.html) -->
         <aside class="sidebar">
             <div class="sidebar__header">
                 <img src="./images/logo.png" alt="Phenikaa University Logo" class="sidebar__logo">
             </div>
             <nav class="sidebar__nav">
-                <!-- Search Input -->
+                <!-- Ô tìm kiếm -->
                 <div class="sidebar__search-container">
                     <input type="text" placeholder="Tìm kiếm" class="sidebar__search-input">
                     <i class="fas fa-search sidebar__search-icon"></i>
                 </div>
-                <!-- Navigation Links -->
-                <a href="index.html" class="sidebar__nav-item sidebar__nav-item--active"> <!-- Link back to list, assuming this is active -->
+                <!-- Các liên kết điều hướng -->
+                <a href="index.html" class="sidebar__nav-item sidebar__nav-item--active">
                     <img src="./images/users.png" alt="user" class="sidebar__nav-item-icon">
                     Tài khoản
                 </a>
                 <a href="#" class="sidebar__nav-item">
-                   <img src="./images/Vector.png" alt="partner" class="sidebar__nav-item-icon">
+                    <img src="./images/Vector.png" alt="partner" class="sidebar__nav-item-icon">
                     Đối tác
                 </a>
                 <a href="#" class="sidebar__nav-item">
@@ -34,30 +34,30 @@
                     Khóa học (E-learning)
                 </a>
                 <a href="#" class="sidebar__nav-item">
-                   <img src="./images/ProjectorScreenChart.png" alt="offline class" class="sidebar__nav-item-icon">
+                    <img src="./images/ProjectorScreenChart.png" alt="offline class" class="sidebar__nav-item-icon">
                     Lớp học offline
                 </a>
                 <a href="#" class="sidebar__nav-item">
                     <img src="./images/Exam.png" alt="exam" class="sidebar__nav-item-icon">
                     Kỳ thi
                 </a>
-                 <a href="#" class="sidebar__nav-item">
+                <a href="#" class="sidebar__nav-item">
                     <img src="./images/Certificate.png" alt="certificate" class="sidebar__nav-item-icon">
                     Chứng chỉ
                 </a>
-                 <a href="#" class="sidebar__nav-item">
+                <a href="#" class="sidebar__nav-item">
                     <img src="./images/ChartPie.png" alt="finance report" class="sidebar__nav-item-icon">
                     Báo cáo tài chính
                 </a>
-                 <a href="#" class="sidebar__nav-item">
+                <a href="#" class="sidebar__nav-item">
                     <img src="./images/Buildings.png" alt="infrastructure" class="sidebar__nav-item-icon">
                     Cơ sở hạ tầng
                 </a>
-                 <a href="#" class="sidebar__nav-item">
+                <a href="#" class="sidebar__nav-item">
                     <img src="./images/SpeakerSimpleHigh.png" alt="news" class="sidebar__nav-item-icon">
                     Tin tức, thông báo
                 </a>
-                 <a href="#" class="sidebar__nav-item">
+                <a href="#" class="sidebar__nav-item">
                     <img src="./images/Gear.png" alt="settings" class="sidebar__nav-item-icon">
                     Cấu hình
                 </a>
@@ -71,16 +71,16 @@
                     </div>
                     <button class="sidebar__logout-button">
                         <i class="fas fa-sign-out-alt"></i>
-                </button>
+                    </button>
                 </div>
             </div>
         </aside>
 
-        <!-- Main Content Area -->
+        <!-- Khu vực nội dung chính -->
         <main class="main-content">
-             <!-- Top Section: Breadcrumbs and Header -->
+            <!-- Phần đầu: Thanh điều hướng và Tiêu đề -->
             <div class="main-content__header-section profile-page-header">
-                <!-- Breadcrumbs -->
+                <!-- Thanh điều hướng -->
                 <nav class="breadcrumbs">
                     <ol class="breadcrumbs__list">
                         <li class="breadcrumbs__item">
@@ -91,29 +91,29 @@
                             <a href="index.html">Tài khoản</a>
                         </li>
                         <li><span class="breadcrumbs__separator">/</span></li>
-                         <li class="breadcrumbs__item">
+                        <li class="breadcrumbs__item">
                             <a href="index.html">Danh sách tài khoản</a>
                         </li>
                         <li><span class="breadcrumbs__separator">/</span></li>
                         <li class="breadcrumbs__item breadcrumbs__item--active">Thông tin cá nhân</li>
                     </ol>
-                 </nav>
+                </nav>
 
-                <!-- Profile Header -->
+                <!-- Tiêu đề hồ sơ -->
                 <div class="profile-header">
                     <div class="profile-header__left">
-                        <img src="./images/Avatar_edit.png" alt="Nguyễn Văn Nam" class="profile-header__avatar">
+                        <img src="./images/Avatar_edit.png" alt="User Avatar" class="profile-header__avatar">
                         <div>
                             <h1 class="profile-header__name">Nguyễn Văn Nam</h1>
                             <span class="profile-header__role status-badge status-badge--green">Sinh viên</span>
                         </div>
                     </div>
                     <button class="button button--primary profile-header__edit-button">
-                         <img src="./images/edit.png" alt="edit" class="button__icon"> Cập nhật thông tin
+                        <img src="./images/edit.png" alt="edit" class="button__icon"> Cập nhật thông tin
                     </button>
                 </div>
 
-                 <!-- Profile Tabs -->
+                <!-- Các tab hồ sơ -->
                 <div class="profile-tabs">
                     <a href="#" class="profile-tabs__tab profile-tabs__tab--active">Thông tin cá nhân</a>
                     <a href="#" class="profile-tabs__tab">Khóa học (E-Learning) <span class="profile-tabs__count">2</span></a>
@@ -122,11 +122,11 @@
                 </div>
             </div>
 
-            <!-- Content Body -->
+            <!-- Nội dung chính -->
             <div class="main-content__body profile-page-body">
-                <!-- Tab Content: Thông tin cá nhân (Default View) -->
+                <!-- Nội dung tab: Thông tin cá nhân (Chế độ xem mặc định) -->
                 <div id="tab-content-personal-info" class="tab-content active">
-                    <!-- Statistics Cards -->
+                    <!-- Thẻ thống kê -->
                     <div class="stats-cards-container">
                         <div class="stat-card">
                             <div class="stat-card__header">
@@ -160,19 +160,19 @@
                         </div>
                     </div>
 
-                    <!-- Personal Information Section -->
+                    <!-- Phần thông tin cá nhân -->
                     <div class="info-section">
                         <h2 class="info-section__title">Thông tin cá nhân</h2>
                         <div class="info-grid">
-                            <div class="info-item"><span class="info-item__label">Mã tài khoản</span><span class="info-item__value">TK002341</span></div>
-                            <div class="info-item"><span class="info-item__label">Ngày sinh</span><span class="info-item__value">30/08/2001</span></div>
-                            <div class="info-item"><span class="info-item__label">Quê quán</span><span class="info-item__value">Hà Nam</span></div>
-                            <div class="info-item"><span class="info-item__label">Số điện thoại</span><span class="info-item__value">0369852147</span></div>
-                            <div class="info-item"><span class="info-item__label">Email</span><span class="info-item__value">rikkeiacademy@gmail.com</span></div>
-                            <div class="info-item"><span class="info-item__label">Trường</span><span class="info-item__value">Học viện công nghệ BCVT (PTIT)</span></div>
-                            <div class="info-item"><span class="info-item__label">Mã sinh viên</span><span class="info-item__value">D12DCCN114</span></div>
-                            <div class="info-item"><span class="info-item__label">Khóa học</span><span class="info-item__value">2020-2025</span></div>
-                            <div class="info-item"><span class="info-item__label">Chuyên ngành</span><span class="info-item__value">Công nghệ thông tin</span></div>
+                            <div class="info-item"><span class="info-item__label">Mã tài khoản</span><span class="info-item__value info-item__value--id">TK002341</span></div>
+                            <div class="info-item"><span class="info-item__label">Ngày sinh</span><span class="info-item__value info-item__value--dob">30/08/2001</span></div>
+                            <div class="info-item"><span class="info-item__label">Quê quán</span><span class="info-item__value info-item__value--address">Hà Nam</span></div>
+                            <div class="info-item"><span class="info-item__label">Số điện thoại</span><span class="info-item__value info-item__value--phone">0369852147</span></div>
+                            <div class="info-item"><span class="info-item__label">Email</span><span class="info-item__value info-item__value--email">rikkeiacademy@gmail.com</span></div>
+                            <div class="info-item"><span class="info-item__label">Trường</span><span class="info-item__value info-item__value--school">Học viện công nghệ BCVT (PTIT)</span></div>
+                            <div class="info-item"><span class="info-item__label">Mã sinh viên</span><span class="info-item__value info-item__value--studentId">D12DCCN114</span></div>
+                            <div class="info-item"><span class="info-item__label">Khóa học</span><span class="info-item__value info-item__value--course">2020-2025</span></div>
+                            <div class="info-item"><span class="info-item__label">Chuyên ngành</span><span class="info-item__value info-item__value--major">Công nghệ thông tin</span></div>
                         </div>
                         <div class="certificate-links">
                             <a href="#" class="certificate-link">
@@ -186,11 +186,11 @@
                         </div>
                     </div>
 
-                    <!-- Course Sections -->
+                    <!-- Phần khóa học -->
                     <div class="course-section">
                         <h2 class="course-section__title">Khóa học (E-Learning) <span class="course-section__count">3</span></h2>
                         <div class="course-cards-container">
-                            <!-- Course Card 1 -->
+                            <!-- Thẻ khóa học 1 -->
                             <div class="course-card">
                                 <div class="course-card__icon" style="background-color: #fdecec; color: #dd3838;">RK</div>
                                 <div class="course-card__info">
@@ -203,8 +203,8 @@
                                     <a href="#" class="course-card__details-link">Xem chi tiết</a>
                                 </div>
                             </div>
-                             <!-- Course Card 2 -->
-                             <div class="course-card">
+                            <!-- Thẻ khóa học 2 -->
+                            <div class="course-card">
                                 <div class="course-card__icon" style="background-color: #fffbeb; color: #f59e0b;">A</div>
                                 <div class="course-card__info">
                                     <h3 class="course-card__title">Product Designer</h3>
@@ -216,8 +216,8 @@
                                     <a href="#" class="course-card__details-link">Xem chi tiết</a>
                                 </div>
                             </div>
-                             <!-- Course Card 3 -->
-                             <div class="course-card">
+                            <!-- Thẻ khóa học 3 -->
+                            <div class="course-card">
                                 <div class="course-card__icon" style="background-color: #eff6ff; color: #3b82f6;">C++</div>
                                 <div class="course-card__info">
                                     <h3 class="course-card__title">Lập trình C++</h3>
@@ -232,29 +232,29 @@
                         </div>
                     </div>
 
-                     <div class="course-section">
+                    <div class="course-section">
                         <h2 class="course-section__title">Lớp học offline <span class="course-section__count">2</span></h2>
                         <div class="course-cards-container">
-                            <!-- Offline Class Card 1 -->
-                             <div class="course-card">
+                            <!-- Thẻ lớp học offline 1 -->
+                            <div class="course-card">
                                 <div class="course-card__icon" style="background-color: #f5f3ff; color: #7c3aed;"><i class="fab fa-java"></i></div>
                                 <div class="course-card__info">
                                     <h3 class="course-card__title">Nhập môn lập trình với Java</h3>
                                     <p class="course-card__subtitle">FPT</p>
-                                     <div class="course-card__progress-container">
+                                    <div class="course-card__progress-container">
                                         <div class="course-card__progress" style="--progress-width: 32%; --progress-color: #7c3aed;"></div>
                                         <span class="course-card__progress-text">16/50 bài học</span>
                                     </div>
                                     <a href="#" class="course-card__details-link">Xem chi tiết</a>
                                 </div>
                             </div>
-                            <!-- Offline Class Card 2 -->
-                             <div class="course-card">
+                            <!-- Thẻ lớp học offline 2 -->
+                            <div class="course-card">
                                 <div class="course-card__icon" style="background-color: #fffbeb; color: #f59e0b;">A</div>
                                 <div class="course-card__info">
                                     <h3 class="course-card__title">Product Designer</h3>
                                     <p class="course-card__subtitle">Apollo</p>
-                                     <div class="course-card__progress-container">
+                                    <div class="course-card__progress-container">
                                         <div class="course-card__progress" style="--progress-width: 32%; --progress-color: #f59e0b;"></div>
                                         <span class="course-card__progress-text">16/50 bài học</span>
                                     </div>
@@ -264,11 +264,11 @@
                         </div>
                     </div>
 
-                     <div class="course-section">
+                    <div class="course-section">
                         <h2 class="course-section__title">Kỳ thi <span class="course-section__count">2</span></h2>
                         <div class="course-cards-container">
-                            <!-- Exam Card 1 -->
-                             <div class="course-card exam-card">
+                            <!-- Thẻ kỳ thi 1 -->
+                            <div class="course-card exam-card">
                                 <div class="course-card__icon exam-card__icon" style="background-color: #f5f3ff; color: #7c3aed;"><i class="fas fa-file-code"></i></div>
                                 <div class="course-card__info">
                                     <h3 class="course-card__title">Thi cuối kỳ lập trình C++</h3>
@@ -277,8 +277,8 @@
                                     <a href="#" class="course-card__details-link">Xem chi tiết</a>
                                 </div>
                             </div>
-                             <!-- Exam Card 2 -->
-                              <div class="course-card exam-card">
+                            <!-- Thẻ kỳ thi 2 -->
+                            <div class="course-card exam-card">
                                 <div class="course-card__icon exam-card__icon" style="background-color: #ecfdf5; color: #10b981;"><i class="fab fa-python"></i></div>
                                 <div class="course-card__info">
                                     <h3 class="course-card__title">Thi cuối kỳ lập trình Python</h3>
@@ -290,208 +290,388 @@
                         </div>
                     </div>
                 </div>
-
-                 <!-- Add other tab content divs here later (e.g., id="tab-content-elearning") -->
-
             </div>
         </main>
     </div>
 
-    <!-- Modals if needed -->
+    <!-- Modal nếu cần -->
     <div id="editAccountModal" class="modal-overlay hidden">
         <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal__header">
-                <h2 class="modal__title">Cập nhật thông tin tài khoản</h2>
-                <button id="closeModalButton" class="modal__close-button">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
+            <form id="editAccountForm">
+                <!-- Tiêu đề Modal -->
+                <div class="modal__header">
+                    <h2 class="modal__title">Cập nhật thông tin tài khoản</h2>
+                    <button id="closeModalButton" class="modal__close-button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
 
-            <!-- Modal Body -->
-            <div class="modal__body">
-                <!-- Section 1: General Info -->
-                <div class="form-section-with-description">
-                    <!-- Left: Description -->
-                    <div class="modal__description modal__description--fixed-width">
-                        <h3>Thông tin chung</h3>
-                        <p>Cập nhật thông tin chung về tài khoản</p>
-                    </div>
-                    <!-- Right: Form Fields -->
-                    <div class="modal__form-section">
-                        <!-- General Info Fields -->
-                        <div class="form-group">
-                            <div class="avatar-upload">
-                                <span class="avatar-upload__preview">
-                                    <!-- User Avatar -->
-                                    <img src="./images/Avatar_edit.png" alt="Nguyễn Văn Nam">
-                                </span>
-                                <div class="avatar-upload__dropzone">
-                                    <div class="avatar-upload__dropzone-content">
-                                        <span class="avatar-upload__dropzone-icon">
-                                            <img src="./images/upload-cloud.png" alt="upload">
-                                        </span>
-                                        <div class="avatar-upload__text">
-                                            <label for="file-upload" class="avatar-upload__upload-label">
-                                                <span>Click to upload</span>
-                                            </label>
-                                            <span>or drag and drop</span>
-                                            <input id="file-upload" name="file-upload" type="file"
-                                                class="avatar-upload__file-input"
-                                                accept="image/svg+xml, image/png, image/jpeg, image/gif">
+                <!-- Nội dung Modal -->
+                <div class="modal__body">
+                    <!-- Phần 1: Thông tin chung -->
+                    <div class="form-section-with-description">
+                        <!-- Bên trái: Mô tả -->
+                        <div class="modal__description modal__description--fixed-width">
+                            <h3>Thông tin chung</h3>
+                            <p>Cập nhật thông tin chung về tài khoản</p>
+                        </div>
+                        <!-- Bên phải: Các trường biểu mẫu -->
+                        <div class="modal__form-section">
+                            <!-- Các trường thông tin chung -->
+                            <div class="form-group">
+                                <div class="avatar-upload">
+                                    <span class="avatar-upload__preview">
+                                        <!-- Ảnh đại diện người dùng -->
+                                        <img src="./images/Avatar_edit.png" alt="User Avatar">
+                                    </span>
+                                    <div class="avatar-upload__dropzone">
+                                        <div class="avatar-upload__dropzone-content">
+                                            <span class="avatar-upload__dropzone-icon">
+                                                <img src="./images/upload-cloud.png" alt="upload">
+                                            </span>
+                                            <div class="avatar-upload__text">
+                                                <label for="file-upload" class="avatar-upload__upload-label">
+                                                    <span>Click to upload</span>
+                                                </label>
+                                                <span>or drag and drop</span>
+                                                <input id="file-upload" name="file-upload" type="file"
+                                                    class="avatar-upload__file-input"
+                                                    accept="image/svg+xml, image/png, image/jpeg, image/gif">
+                                            </div>
+                                            <p class="avatar-upload__hint">SVG, PNG, JPG or GIF (max. 400x400px)</p>
                                         </div>
-                                        <p class="avatar-upload__hint">SVG, PNG, JPG or GIF (max. 400x400px)</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="fullName" class="form__label">Họ và tên</label>
-                            <input type="text" name="fullName" id="fullName" value="Nguyễn Văn Nam"
-                                class="form__input">
-                        </div>
-                        <div class="form-group form-group--grid">
-                            <div>
-                                <label for="dob" class="form__label">Ngày sinh</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <img src="./images/calendar.svg" alt="calendar" class="form__input-icon">
-                                    <input type="text" name="dob" id="dob" value="30/08/2001"
-                                        class="form__input form__input--with-icon">
+                            <div class="form-group">
+                                <label for="fullName" class="form__label">Họ và tên</label>
+                                <input type="text" name="fullName" id="fullName" value=""
+                                    class="form__input">
+                            </div>
+                            <div class="form-group form-group--grid">
+                                <div>
+                                    <label for="dob" class="form__label">Ngày sinh</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <img src="./images/calendar.svg" alt="calendar" class="form__input-icon">
+                                        <input type="text" name="dob" id="dob" value=""
+                                            class="form__input form__input--with-icon">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="phone" class="form__label">Số điện thoại</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <img src="./images/phone.svg" alt="phone" class="form__input-icon">
+                                        <input type="tel" name="phone" id="phone" value=""
+                                            class="form__input form__input--with-icon">
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <label for="phone" class="form__label">Số điện thoại</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <img src="./images/phone.svg" alt="phone" class="form__input-icon">
-                                    <input type="tel" name="phone" id="phone" value="0988662345"
-                                        class="form__input form__input--with-icon">
+                            <div class="form-group form-group--grid">
+                                <div>
+                                    <label for="email" class="form__label">Email</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <span class="form__input-icon">
+                                            <i class="far fa-envelope"></i>
+                                        </span>
+                                        <input type="email" name="email" id="email" value=""
+                                            class="form__input form__input--with-icon">
+                                    </div>
                                 </div>
+                                <div>
+                                    <label for="address" class="form__label">Quê quán</label>
+                                    <div class="form__input-container form__input-container--with-icon">
+                                        <img src="./images/MapPin.svg" alt="map-marker" class="form__input-icon">
+                                        <input type="text" name="address" id="address" value=""
+                                            class="form__input form__input--with-icon">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="accountType" class="form__label">Loại tài khoản</label>
+                                <select id="accountType" name="accountType" class="form__select">
+                                    <option value="Sinh viên">Sinh viên</option>
+                                    <option value="Nhà trường">Nhà trường</option>
+                                    <option value="Giảng viên">Giảng viên</option>
+                                    <option value="Trợ giảng">Trợ giảng</option>
+                                    <option value="Nhân viên dịch vụ">Nhân viên dịch vụ</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group form-group--grid">
-                            <div>
-                                <label for="email" class="form__label">Email</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <span class="form__input-icon">
-                                        <i class="far fa-envelope"></i>
-                                    </span>
-                                    <input type="email" name="email" id="email" value="namtran94@phenikaa.com"
-                                        class="form__input form__input--with-icon">
-                                </div>
-                            </div>
-                            <div>
-                                <label for="address" class="form__label">Quê quán</label>
-                                <div class="form__input-container form__input-container--with-icon">
-                                    <img src="./images/MapPin.svg" alt="map-marker" class="form__input-icon">
-                                    <input type="text" name="address" id="address" value="Hà Nam"
-                                        class="form__input form__input--with-icon">
-                                </div>
-                            </div>
+                    </div>
+
+                    <!-- Đường phân cách -->
+                    <hr class="modal__divider">
+
+                    <!-- Phần 2: Thông tin sinh viên -->
+                    <div id="studentInfoSectionContainer" class="form-section-with-description hidden">
+                        <!-- Bên trái: Mô tả -->
+                        <div class="modal__description modal__description--fixed-width">
+                            <h3>Thông tin sinh viên</h3>
+                            <p>Cập nhật thông tin liên quan đến loại tài khoản</p>
                         </div>
-                        <div class="form-group">
-                            <label for="accountType" class="form__label">Loại tài khoản</label>
-                            <select id="accountType" name="accountType" class="form__select">
-                                <option value="Sinh viên" selected>Sinh viên</option>
-                                <option value="Nhà trường">Nhà trường</option>
-                                <option value="Giảng viên">Giảng viên</option>
-                                <option value="Trợ giảng">Trợ giảng</option>
-                                <option value="Nhân viên dịch vụ">Nhân viên dịch vụ</option>
-                            </select>
+                        <!-- Bên phải: Các trường biểu mẫu -->
+                        <div class="modal__form-section">
+                            <!-- Các trường thông tin sinh viên -->
+                            <div class="form-group">
+                                <label for="school" class="form__label">Trường</label>
+                                <select id="school" name="school" class="form__select">
+                                    <option>Chọn trường của bạn</option>
+                                    <option>Học viện công nghệ BCVT (PTIT)</option>
+                                    <option>Trường Đại học Phenikaa</option>
+                                    <option>Trường Đại học Khoa học Tự nhiên</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group--grid">
+                                <div>
+                                    <label for="studentId" class="form__label">Mã sinh viên</label>
+                                    <input type="text" name="studentId" id="studentId" value=""
+                                        class="form__input">
+                                </div>
+                                <div>
+                                    <label for="course" class="form__label">Khóa</label>
+                                    <input type="text" name="course" id="course" value=""
+                                        class="form__input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="major" class="form__label">Chuyên ngành</label>
+                                <select id="major" name="major" class="form__select">
+                                    <option>Chọn chuyên ngành của bạn</option>
+                                    <option>Khoa học Máy tính</option>
+                                    <option>Công nghệ Thông tin</option>
+                                    <option>Quản trị Kinh doanh</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Divider -->
-                <hr class="modal__divider">
-
-                <!-- Section 2: Student Info -->
-                <div class="form-section-with-description">
-                    <!-- Left: Description -->
-                    <div class="modal__description modal__description--fixed-width">
-                        <h3>Thông tin sinh viên</h3>
-                        <p>Cập nhật thông tin liên quan đến loại tài khoản</p>
-                    </div>
-                    <!-- Right: Form Fields -->
-                    <div class="modal__form-section">
-                        <!-- Student Info Fields -->
-                        <div class="form-group">
-                            <label for="school" class="form__label">Trường</label>
-                            <select id="school" name="school" class="form__select">
-                                <option>Chọn trường của bạn</option>
-                                <option selected>Học viện công nghệ BCVT (PTIT)</option>
-                                <option>Trường Đại học Phenikaa</option>
-                                <option>Trường Đại học Khoa học Tự nhiên</option>
-                            </select>
-                        </div>
-                        <div class="form-group form-group--grid">
-                            <div>
-                                <label for="studentId" class="form__label">Mã sinh viên</label>
-                                <input type="text" name="studentId" id="studentId" value="D12DCCN114"
-                                    class="form__input">
-                            </div>
-                            <div>
-                                <label for="course" class="form__label">Khóa</label>
-                                <input type="text" name="course" id="course" value="2020-2025"
-                                    class="form__input">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="major" class="form__label">Chuyên ngành</label>
-                            <select id="major" name="major" class="form__select">
-                                <option>Chọn chuyên ngành của bạn</option>
-                                <option>Khoa học Máy tính</option>
-                                <option selected>Công nghệ Thông tin</option>
-                                <option>Quản trị Kinh doanh</option>
-                            </select>
-                        </div>
-                    </div>
+                <!-- Chân trang Modal -->
+                <div class="modal__footer">
+                    <button id="cancelModalButton" class="button modal__footer-button modal__footer-button--cancel">Hủy</button>
+                    <button type="submit" class="button modal__footer-button modal__footer-button--submit">Lưu cập nhật</button>
                 </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="modal__footer">
-                <button id="cancelModalButton"
-                    class="button modal__footer-button modal__footer-button--cancel">Hủy</button>
-                <button type="submit" class="button modal__footer-button modal__footer-button--submit">Lưu cập nhật</button>
-            </div>
+            </form>
         </div>
     </div>
 
-    <!-- Link to JS file -->
-    <script src="js/main.js" defer></script>
-    <!-- Add specific JS for this page -->
+    <!-- Thông báo thành công khi cập nhật -->
+    <div id="updateSuccessToast" class="toast toast--success hidden">
+        <span class="toast__icon">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span class="toast__message">Đã cập nhật thông tin</span>
+    </div>
+
+    <!-- Liên kết tới file JS -->
+    <script src="js/edit-account.js" defer></script>
+    <!-- Thêm JS cụ thể cho trang này -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get modal elements
+            // Lấy id tài khoản từ URL
+            function getAccountIdFromUrl() {
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+                console.log(id);
+                if (!id) {
+                    showToast('error', 'Không tìm thấy ID tài khoản trong URL!');
+                    return null;
+                }
+                return id;
+            }
+
+            // Lấy dữ liệu tài khoản từ localStorage
+            function getAccountById(id) {
+                try {
+                    const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+                    const account = accounts.find(acc => acc.id === id);
+                    if (!account) {
+                        showToast('error', 'Không tìm thấy tài khoản với ID này!');
+                    }
+                    return account;
+                } catch (err) {
+                    showToast('error', 'Lỗi khi truy cập dữ liệu tài khoản!');
+                    console.error('[Lỗi getAccountById]', err);
+                    return null;
+                }
+            }
+
+            // Hiển thị dữ liệu tài khoản lên giao diện
+            function displayAccountData(account) {
+                if (!account) return;
+
+                // Ảnh đại diện
+                const defaultAvatar = './images/Avatar_edit.png';
+                const avatarImg = document.querySelector('.profile-header__avatar');
+                const avatarPreview = document.querySelector('.avatar-upload__preview img');
+                if (account.avatar) {
+                    if (avatarImg) avatarImg.src = account.avatar;
+                    if (avatarPreview) avatarPreview.src = account.avatar;
+                } else {
+                    if (avatarImg) avatarImg.src = defaultAvatar;
+                    if (avatarPreview) avatarPreview.src = defaultAvatar;
+                }
+
+                // Tên sinh viên
+                const profileName = document.querySelector('.profile-header__name');
+                if (profileName) profileName.textContent = account.name || 'Không xác định';
+
+                // Loại tài khoản
+                const profileRole = document.querySelector('.profile-header__role');
+                if (profileRole) {
+                    profileRole.textContent = account.type || 'Không xác định';
+                    profileRole.className = `status-badge status-badge--${getStatusBadgeClass(account.type)}`;
+                }
+
+                // Thông tin cá nhân
+                const infoId = document.querySelector('.info-item__value--id');
+                const infoDob = document.querySelector('.info-item__value--dob');
+                const infoAddress = document.querySelector('.info-item__value--address');
+                const infoPhone = document.querySelector('.info-item__value--phone');
+                const infoEmail = document.querySelector('.info-item__value--email');
+                const infoSchool = document.querySelector('.info-item__value--school');
+                const infoStudentId = document.querySelector('.info-item__value--studentId');
+                const infoCourse = document.querySelector('.info-item__value--course');
+                const infoMajor = document.querySelector('.info-item__value--major');
+
+                if (infoId) infoId.textContent = account.id || 'Không có';
+                if (infoAddress) infoAddress.textContent = account.address || 'Không có';
+                if (infoPhone) infoPhone.textContent = account.phone || 'Không có';
+                if (infoEmail) infoEmail.textContent = account.email || 'Không có';
+
+                // Ngày sinh (chuyển về dd/mm/yyyy)
+                if (infoDob) {
+                    let dob = account.dob || '';
+                    if (dob && dob.includes('-')) {
+                        const [year, month, day] = dob.split('-');
+                        dob = `${day}/${month}/${year}`;
+                    }
+                    infoDob.textContent = dob || 'Không có';
+                }
+
+                // Thông tin sinh viên (nếu có)
+                if (account.type === 'Sinh viên' && account.studentInfo) {
+                    if (infoSchool) infoSchool.textContent = account.studentInfo.school || 'Không có';
+                    if (infoStudentId) infoStudentId.textContent = account.studentInfo.studentId || 'Không có';
+                    if (infoCourse) infoCourse.textContent = account.studentInfo.course || 'Không có';
+                    if (infoMajor) infoMajor.textContent = account.studentInfo.major || 'Không có';
+                } else {
+                    if (infoSchool) infoSchool.textContent = 'Không áp dụng';
+                    if (infoStudentId) infoStudentId.textContent = 'Không áp dụng';
+                    if (infoCourse) infoCourse.textContent = 'Không áp dụng';
+                    if (infoMajor) infoMajor.textContent = 'Không áp dụng';
+                }
+            }
+
+            // Hàm phụ trợ cho màu sắc của badge
+            function getStatusBadgeClass(type) {
+                const typeClasses = {
+                    'Sinh viên': 'green',
+                    'Nhà trường': 'orange',
+                    'Giảng viên': 'red',
+                    'Trợ giảng': 'blue',
+                    'Nhân viên dịch vụ': 'purple'
+                };
+                return typeClasses[type] || 'gray';
+            }
+
+            // Thông báo toast
+            function showToast(type, message) {
+                const existingToast = document.querySelector('.toast');
+                if (existingToast) existingToast.remove();
+
+                const toast = document.createElement('div');
+                toast.className = `toast toast--${type}`;
+                const iconSvg = type === 'success' ?
+                    `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>` :
+                    `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4"/><path d="M12 16h.01"/>
+                    </svg>`;
+                toast.innerHTML = `
+                    <div class="toast__content" style="display: flex; align-items: center; gap: 12px;">
+                        <span class="toast__icon" style="
+                            display: flex; align-items: center; justify-content: center;
+                            width: 36px; height: 36px; border-radius: 50%;
+                            background: ${type === 'success' ? '#E6F4EA' : '#FDECEA'};
+                        ">
+                            ${iconSvg}
+                        </span>
+                        <span class="toast__message" style="
+                            color: #22223B; font-size: 16px; font-weight: 500;
+                        ">${message}</span>
+                    </div>
+                `;
+
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 40px;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-20px);
+                    background: #fff;
+                    color: #22223B;
+                    padding: 16px 32px;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+                    min-width: 320px;
+                    max-width: 90vw;
+                `;
+
+                document.body.appendChild(toast);
+                toast.offsetHeight;
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateX(-50%) translateY(0)';
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(-50%) translateY(-20px)';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+
+            // Khởi tạo
+            const id = getAccountIdFromUrl();
+            if (id) {
+                const account = getAccountById(id);
+                if (account) {
+                    displayAccountData(account);
+                }
+            }
+
+            // Lấy các phần tử modal
             const editAccountModal = document.getElementById('editAccountModal');
             const editButton = document.querySelector('.profile-header__edit-button');
             const closeModalButton = document.getElementById('closeModalButton');
             const cancelModalButton = document.getElementById('cancelModalButton');
 
-            // Function to open modal
+            // Hàm mở modal
             const openEditModal = () => {
                 if (editAccountModal) {
                     editAccountModal.classList.remove('hidden');
-                    console.log('Edit Account Modal opened');
+                    console.log('Modal Cập nhật tài khoản đã mở');
                 } else {
-                    console.error('Edit Account Modal element not found for opening');
+                    console.error('Không tìm thấy phần tử Modal Cập nhật tài khoản để mở');
                 }
             };
 
-            // Function to close modal
+            // Hàm đóng modal
             const closeEditModal = () => {
                 if (editAccountModal) {
                     editAccountModal.classList.add('hidden');
-                    console.log('Edit Account Modal closed');
                 } else {
-                    console.error('Edit Account Modal element not found for closing');
+                    console.error('Không tìm thấy phần tử Modal Cập nhật tài khoản để đóng');
                 }
             };
 
-            // Attach event listeners
+            // Gắn các trình xử lý sự kiện
             if (editButton) {
                 editButton.addEventListener('click', openEditModal);
             }
@@ -504,7 +684,7 @@
                 cancelModalButton.addEventListener('click', closeEditModal);
             }
 
-            // Close modal when clicking outside
+            // Đóng modal khi nhấp chuột ra ngoài
             if (editAccountModal) {
                 editAccountModal.addEventListener('click', (event) => {
                     const modalContent = editAccountModal.querySelector('.modal-content');
@@ -514,7 +694,7 @@
                 });
             }
 
-            // Close modal with Escape key
+            // Đóng modal bằng phím Escape
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && editAccountModal && !editAccountModal.classList.contains('hidden')) {
                     closeEditModal();
@@ -523,4 +703,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
