@@ -1,36 +1,114 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Các phần tử DOM
     const editAccountModal = document.getElementById('editAccountModal');
+    const editButton = document.querySelector('.profile-header__edit-button');
     const closeModalButton = document.getElementById('closeModalButton');
     const cancelModalButton = document.getElementById('cancelModalButton');
+    const accountTypeSelect = document.getElementById('accountType');
+    const studentInfoSection = document.getElementById('studentInfoSectionContainer');
+    const editAccountForm = document.getElementById('editAccountForm');
 
     // Lấy id tài khoản từ URL
     function getAccountIdFromUrl() {
         const params = new URLSearchParams(window.location.search);
-        return params.get('id');
+        const id = params.get('id');
+        if (!id) {
+            showToast('error', 'Không tìm thấy ID tài khoản trong URL!');
+            return null;
+        }
+        return id;
     }
 
     // Lấy dữ liệu tài khoản từ localStorage
     function getAccountById(id) {
-        const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-        return accounts.find(acc => acc.id === id);
+        try {
+            const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+            const account = accounts.find(acc => acc.id === id);
+            if (!account) {
+                showToast('error', 'Không tìm thấy tài khoản với ID này!');
+            }
+            return account;
+        } catch (err) {
+            showToast('error', 'Lỗi khi truy cập dữ liệu tài khoản!');
+            console.error('[Lỗi getAccountById]', err);
+            return null;
+        }
     }
 
-    function showToast(type, message) {
-        const oldToasts = document.querySelectorAll('.toast-test');
-        oldToasts.forEach(t => t.remove());
-        const toast = document.createElement('div');
-        toast.className = 'toast-test';
-        toast.innerHTML = `<div style="padding:20px 32px;background:#fff;border-radius:8px;box-shadow:0 2px 16px rgba(0,0,0,0.15);font-size:18px;color:#22223B;">${message}</div>`;
-        toast.style.cssText = 'position:fixed;top:40px;right:40px;transform:translateX(-50%);z-index:999999;display:block;opacity:1;pointer-events:auto;';
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
-        console.log('Toast appended:', toast);
+    // Hiển thị dữ liệu tài khoản lên giao diện
+    function displayAccountData(account) {
+        if (!account) return;
+
+        // Ảnh đại diện
+        const defaultAvatar = './images/Avatar_edit.png';
+        const avatarImg = document.querySelector('.profile-header__avatar');
+        const avatarPreview = document.querySelector('.avatar-upload__preview img');
+        if (account.avatar) {
+            if (avatarImg) avatarImg.src = account.avatar;
+            if (avatarPreview) avatarPreview.src = account.avatar;
+        } else {
+            if (avatarImg) avatarImg.src = defaultAvatar;
+            if (avatarPreview) avatarPreview.src = defaultAvatar;
+        }
+
+        // Tên sinh viên
+        const profileName = document.querySelector('.profile-header__name');
+        if (profileName) profileName.textContent = account.name || 'Không xác định';
+
+        // Loại tài khoản
+        const profileRole = document.querySelector('.profile-header__role');
+        if (profileRole) {
+            profileRole.textContent = account.type || 'Không xác định';
+            profileRole.className = `status-badge status-badge--${getStatusBadgeClass(account.type)}`;
+        }
+
+        // Thông tin cá nhân
+        const infoId = document.querySelector('.info-item__value--id');
+        const infoDob = document.querySelector('.info-item__value--dob');
+        const infoAddress = document.querySelector('.info-item__value--address');
+        const infoPhone = document.querySelector('.info-item__value--phone');
+        const infoEmail = document.querySelector('.info-item__value--email');
+        const infoSchool = document.querySelector('.info-item__value--school');
+        const infoStudentId = document.querySelector('.info-item__value--studentId');
+        const infoCourse = document.querySelector('.info-item__value--course');
+        const infoMajor = document.querySelector('.info-item__value--major');
+
+        if (infoId) infoId.textContent = account.id || 'Không có';
+        if (infoAddress) infoAddress.textContent = account.address || 'Không có';
+        if (infoPhone) infoPhone.textContent = account.phone || 'Không có';
+        if (infoEmail) infoEmail.textContent = account.email || 'Không có';
+
+        // Ngày sinh (chuyển về dd/mm/yyyy)
+        if (infoDob) {
+            let dob = account.dob || '';
+            if (dob && dob.includes('-')) {
+                const [year, month, day] = dob.split('-');
+                dob = `${day}/${month}/${year}`;
+            }
+            infoDob.textContent = dob || 'Không có';
+        }
+
+        // Thông tin sinh viên (nếu có)
+        if (account.type === 'Sinh viên' && account.studentInfo) {
+            if (infoSchool) infoSchool.textContent = account.studentInfo.school || 'Không có';
+            if (infoStudentId) infoStudentId.textContent = account.studentInfo.studentId || 'Không có';
+            if (infoCourse) infoCourse.textContent = account.studentInfo.course || 'Không có';
+            if (infoMajor) infoMajor.textContent = account.studentInfo.major || 'Không có';
+        } else {
+            if (infoSchool) infoSchool.textContent = 'Không áp dụng';
+            if (infoStudentId) infoStudentId.textContent = 'Không áp dụng';
+            if (infoCourse) infoCourse.textContent = 'Không áp dụng';
+            if (infoMajor) infoMajor.textContent = 'Không áp dụng';
+        }
     }
 
     // Điền dữ liệu vào form/modal
     function fillAccountData(account) {
         if (!account) return;
+
+        // Lưu trữ dữ liệu ban đầu để khôi phục khi hủy
+        window.initialAccountData = { ...account };
+
         // Avatar
         if (account.avatar) {
             const avatarImg = document.querySelector('.profile-header__avatar');
@@ -38,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const avatarPreview = document.querySelector('.avatar-upload__preview img');
             if (avatarPreview) avatarPreview.src = account.avatar;
         }
+
         // Tên
         document.getElementById('fullName').value = account.name || '';
         // Ngày sinh (chuyển về yyyy-mm-dd nếu cần)
@@ -58,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Loại tài khoản
         document.getElementById('accountType').value = account.type || '';
         // Hiển thị/ẩn thông tin sinh viên
-        toggleStudentInfoSection();
+        toggleStudentInfo();
         // Nếu là sinh viên, điền thêm thông tin sinh viên
         if (account.type === 'Sinh viên' && account.studentInfo) {
             document.getElementById('school').value = account.studentInfo.school || '';
@@ -73,34 +152,151 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Hàm phụ trợ cho màu sắc của badge
+    function getStatusBadgeClass(type) {
+        const typeClasses = {
+            'Sinh viên': 'green',
+            'Nhà trường': 'orange',
+            'Giảng viên': 'red',
+            'Trợ giảng': 'blue',
+            'Nhân viên dịch vụ': 'purple'
+        };
+        return typeClasses[type] || 'gray';
+    }
+
+    // Toast notification chuẩn hóa
+    function closeEditModal(type, message) {
+        // Xóa toast cũ nếu có
+        const existingToast = document.querySelector('.toast-custom');
+        if (existingToast) existingToast.remove();
+
+        // Chọn icon và màu theo type
+        let iconHtml = '', bgColor = '';
+        if (type === 'delete') {
+            iconHtml = `<i class="fas fa-trash-alt" style="color:#B45309;font-size:22px;"></i>`;
+            bgColor = '#FDECEA';
+        } else if (type === 'add') {
+            iconHtml = `<i class="fas fa-plus-circle" style="color:#2563EB;font-size:22px;"></i>`;
+            bgColor = '#EFF6FF';
+        } else if (type === 'update' || type === 'success') {
+            iconHtml = `<i class="fas fa-check-circle" style="color:#16A34A;font-size:22px;"></i>`;
+            bgColor = '#E6F4EA';
+        } else if (type === 'error') {
+            iconHtml = `<i class="fas fa-times-circle" style="color:#DC2626;font-size:22px;"></i>`;
+            bgColor = '#FDECEA';
+        }
+
+        // Tạo toast
+        const toast = document.createElement('div');
+        toast.className = 'toast-custom';
+        toast.innerHTML = `
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:${bgColor};margin-right:16px;">${iconHtml}</span>
+            <span style="color:#22223B;font-size:16px;font-weight:500;">${message}</span>
+        `;
+        toast.style.cssText = `
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #22223B;
+            padding: 16px 32px;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+            z-index: 9999;
+            min-width: 320px;
+            max-width: 90vw;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '1'; }, 10);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    // Hàm mở modal
+    function openEditModal() {
+        if (editAccountModal) {
+            editAccountModal.classList.remove('hidden');
+            console.log('Modal Cập nhật tài khoản đã mở');
+            // Điền dữ liệu ban đầu khi mở modal
+            const id = getAccountIdFromUrl();
+            if (id) {
+                const account = getAccountById(id);
+                if (account) {
+                    fillAccountData(account);
+                }
+            }
+        } else {
+            console.error('Không tìm thấy phần tử Modal Cập nhật tài khoản để mở');
+        }
+    }
+
+    // Hàm đóng modal và khôi phục dữ liệu ban đầu
+    function closeEditModal() {
+        if (editAccountModal) {
+            editAccountModal.classList.add('hidden');
+            // Khôi phục dữ liệu ban đầu từ initialAccountData
+            if (window.initialAccountData) {
+                fillAccountData(window.initialAccountData);
+            }
+        } else {
+            console.error('Không tìm thấy phần tử Modal Cập nhật tài khoản để đóng');
+        }
+    }
+
     // Hiển thị/ẩn phần thông tin sinh viên
-    function toggleStudentInfoSection() {
-        const accountType = document.getElementById('accountType').value;
-        const isStudent = accountType === 'Sinh viên';
-        const studentInfoSection = document.getElementById('studentInfoSectionContainer');
-        if (studentInfoSection) {
+    function toggleStudentInfo() {
+        if (accountTypeSelect && studentInfoSection) {
+            const isStudent = accountTypeSelect.value === 'Sinh viên';
             studentInfoSection.classList.toggle('hidden', !isStudent);
         }
     }
 
-    // Đóng modal khi ấn nút Hủy hoặc dấu X
-    if (cancelModalButton && editAccountModal) {
-        cancelModalButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            editAccountModal.classList.add('hidden');
-        });
+    // Gắn các trình xử lý sự kiện cho modal
+    if (editButton) {
+        editButton.addEventListener('click', openEditModal);
     }
-    if (closeModalButton && editAccountModal) {
-        closeModalButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            editAccountModal.classList.add('hidden');
+
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeEditModal);
+    }
+
+    if (cancelModalButton) {
+        cancelModalButton.addEventListener('click', closeEditModal);
+    }
+
+    // Đóng modal khi nhấp chuột ra ngoài
+    if (editAccountModal) {
+        editAccountModal.addEventListener('click', (event) => {
+            const modalContent = editAccountModal.querySelector('.modal-content');
+            if (event.target === editAccountModal && modalContent && !modalContent.contains(event.target)) {
+                closeEditModal();
+            }
         });
     }
 
+    // Đóng modal bằng phím Escape
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && editAccountModal && !editAccountModal.classList.contains('hidden')) {
+            closeEditModal();
+        }
+    });
+
+    // Ẩn/hiện thông tin sinh viên khi chọn loại tài khoản
+    if (accountTypeSelect && studentInfoSection) {
+        accountTypeSelect.addEventListener('change', toggleStudentInfo);
+    }
+
     // Lắng nghe submit form cập nhật
-    const editAccountForm = document.getElementById('editAccountForm');
     if (editAccountForm) {
-        editAccountForm.addEventListener('submit', function(e) {
+        editAccountForm.addEventListener('submit', function (e) {
             e.preventDefault();
             const id = getAccountIdFromUrl();
             if (!id) return;
@@ -121,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const avatarFile = formData.get('file-upload');
             if (avatarFile && avatarFile.size > 0) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     avatar = e.target.result;
                     saveUpdate();
                 };
@@ -190,10 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Cập nhật lại giao diện
                 fillAccountData(updatedAccount);
-                // Cập nhật lại phần hiển thị thông tin cá nhân (nếu có)
-                if (typeof displayAccountData === 'function') {
-                    displayAccountData(updatedAccount);
-                }
+                displayAccountData(updatedAccount);
 
                 showToast('success', 'Cập nhật thông tin thành công');
                 editAccountModal.classList.add('hidden');
@@ -205,6 +398,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const id = getAccountIdFromUrl();
     if (id) {
         const account = getAccountById(id);
-        fillAccountData(account);
+        if (account) {
+            displayAccountData(account);
+            fillAccountData(account);
+        }
     }
 });
