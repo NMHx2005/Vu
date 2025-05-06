@@ -605,10 +605,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>
                         <div class="data-table__actions">
                             <button class="data-table__action-button data-table__action-button--delete" data-id="${account.id}">
-                                <img src="./images/trash-2.png" alt="delete">
+                                <img src="../images/trash-2.png" alt="delete">
                             </button>
                             <a href="edit-account.html?id=${account.id}" class="data-table__action-button data-table__action-button--edit">
-                                <img src="./images/edit-2.png" alt="edit">
+                                <img src="../images/edit-2.png" alt="edit">
                             </a>
                         </div>
                     </td>

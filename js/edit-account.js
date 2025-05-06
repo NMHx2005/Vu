@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!account) return;
 
         // Ảnh đại diện
-        const defaultAvatar = './images/Avatar_edit.png';
+        const defaultAvatar = '../images/Avatar_edit.png';
         const avatarImg = document.querySelector('.profile-header__avatar');
         const avatarPreview = document.querySelector('.avatar-upload__preview img');
         if (account.avatar) {
