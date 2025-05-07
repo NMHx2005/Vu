@@ -394,6 +394,68 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Toast notification chuẩn hóa cho xóa, thêm, cập nhật
+    function showToast(type, message) {
+        // Xóa toast cũ nếu có
+        const existingToast = document.querySelector('.toast-custom');
+        if (existingToast) existingToast.remove();
+
+        // Chọn icon và màu theo type
+        let iconHtml = '', bgColor = '';
+        if (type === 'delete') {
+            iconHtml = `<i class="fas fa-trash-alt" style="color:#B45309;font-size:22px;"></i>`;
+            bgColor = '#FDECEA';
+        } else if (type === 'add') {
+            iconHtml = `<i class="fas fa-plus-circle" style="color:#2563EB;font-size:22px;"></i>`;
+            bgColor = '#EFF6FF';
+        } else if (type === 'update' || type === 'success') {
+            iconHtml = `<i class="fas fa-check-circle" style="color:#16A34A;font-size:22px;"></i>`;
+            bgColor = '#E6F4EA';
+        } else if (type === 'error') {
+            iconHtml = `<i class="fas fa-times-circle" style="color:#DC2626;font-size:22px;"></i>`;
+            bgColor = '#FDECEA';
+        } else if (type === 'trash') {
+            iconHtml = `<i class="fas fa-trash-alt" style="color:#B45309;font-size:22px;"></i>`;
+            bgColor = '#FDECEA';
+        }
+
+        // Tạo toast
+        const toast = document.createElement('div');
+        toast.className = 'toast-custom';
+        toast.innerHTML = `
+            <span style="
+                display:inline-flex;align-items:center;justify-content:center;
+                width:40px;height:40px;border-radius:50%;background:${bgColor};margin-right:16px;
+            ">${iconHtml}</span>
+            <span style="color:#22223B;font-size:16px;font-weight:500;">${message}</span>
+        `;
+        toast.style.cssText = `
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #22223B;
+            padding: 16px 32px;
+            border-radius: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+            z-index: 9999;
+            min-width: 320px;
+            max-width: 90vw;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '1'; }, 10);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
     // Khởi tạo
     const id = getAccountIdFromUrl();
     if (id) {

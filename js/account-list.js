@@ -244,11 +244,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Khởi tạo giao diện, sự kiện, lưu dữ liệu mẫu nếu chưa có
+    // Danh sách loại tài khoản
+    const ACCOUNT_TYPES = [
+        { label: 'Tất cả', value: 'all' },
+        { label: 'Sinh viên', value: 'Sinh viên' },
+        { label: 'Nhà trường', value: 'Nhà trường' },
+        { label: 'Giảng viên', value: 'Giảng viên' },
+        { label: 'Trợ giảng', value: 'Trợ giảng' },
+        { label: 'Nhân viên dịch vụ', value: 'Nhân viên dịch vụ' }
+    ];
+    let currentTab = 'all';
+    const accountTabsList = document.getElementById('accountTabsList');
+
+    function getAccountTypeCounts() {
+        const counts = {
+            all: accounts.length,
+            'Sinh viên': 0,
+            'Nhà trường': 0,
+            'Giảng viên': 0,
+            'Trợ giảng': 0,
+            'Nhân viên dịch vụ': 0
+        };
+        accounts.forEach(acc => {
+            if (counts[acc.type] !== undefined) counts[acc.type]++;
+        });
+        return counts;
+    }
+
+    function renderAccountTabs() {
+        if (!accountTabsList) return;
+        const counts = getAccountTypeCounts();
+        accountTabsList.innerHTML = ACCOUNT_TYPES.map(tab => `
+            <button class="account-tabs__button${currentTab === tab.value ? ' account-tabs__button--active' : ''}" data-type="${tab.value}">
+                ${tab.label} <span class="account-tabs__count">${counts[tab.value] || 0}</span>
+            </button>
+        `).join('');
+        // Gắn lại sự kiện click
+        accountTabsList.querySelectorAll('.account-tabs__button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const type = this.getAttribute('data-type');
+                currentTab = type;
+                renderAccountTabs();
+                filterAndRenderTable();
+            });
+        });
+    }
+
+    function filterAndRenderTable() {
+        let data = accounts;
+        if (currentTab !== 'all') {
+            data = accounts.filter(acc => acc.type === currentTab);
+        }
+        renderTable(data);
+    }
+
+    // Gọi khi thêm/xóa/sửa tài khoản
+    function updateTabsAndTable() {
+        renderAccountTabs();
+        filterAndRenderTable();
+    }
+
+    // Thay thế renderTable ban đầu bằng filterAndRenderTable trong init
     function init() {
-        renderTable();
+        renderAccountTabs();
+        filterAndRenderTable();
         setupEventListeners();
-        saveAccountsToLocalStorage();
     }
 
     // Thiết lập các sự kiện
@@ -542,7 +602,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         accounts.push(account);
         saveAccountsToLocalStorage();
-        renderTable();
+        updateTabsAndTable();
         closeAddAccountModal();
         showToast('success', 'Thêm tài khoản mới thành công!');
     }
@@ -873,7 +933,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         accounts = [...accounts, ...newAccounts];
                         localStorage.setItem('accounts', JSON.stringify(accounts));
-                        renderTable();
+                        updateTabsAndTable();
                         showToast('success', 'Thêm tài khoản mới thành công!');
                     } catch (err) {
                         showToast('error', 'Lỗi khi nhập file! Vui lòng kiểm tra định dạng.');
@@ -905,7 +965,7 @@ document.addEventListener('DOMContentLoaded', function() {
             confirmDeleteButton.onclick = () => {
                 accounts = accounts.filter(account => account.id !== accountId);
                 saveAccountsToLocalStorage();
-                renderTable();
+                updateTabsAndTable();
                 confirmModal.classList.add('hidden');
                 showToast('trash', 'Đã xóa tài khoản thành công!');
             };
