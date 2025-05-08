@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Toast notification chuẩn hóa
-    function closeEditModal(type, message) {
+    function showToast(type, message) {
         // Xóa toast cũ nếu có
         const existingToast = document.querySelector('.toast-custom');
         if (existingToast) existingToast.remove();
@@ -183,6 +183,9 @@ document.addEventListener('DOMContentLoaded', function () {
             bgColor = '#E6F4EA';
         } else if (type === 'error') {
             iconHtml = `<i class="fas fa-times-circle" style="color:#DC2626;font-size:22px;"></i>`;
+            bgColor = '#FDECEA';
+        } else if (type === 'trash') {
+            iconHtml = `<i class="fas fa-trash-alt" style="color:#B45309;font-size:22px;"></i>`;
             bgColor = '#FDECEA';
         }
 
@@ -239,15 +242,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Hàm đóng modal và khôi phục dữ liệu ban đầu
-    function closeEditModal() {
+    function closeEditModal(showWarning = true) {
         if (editAccountModal) {
             editAccountModal.classList.add('hidden');
-            // Khôi phục dữ liệu ban đầu từ initialAccountData
             if (window.initialAccountData) {
                 fillAccountData(window.initialAccountData);
             }
-        } else {
-            console.error('Không tìm thấy phần tử Modal Cập nhật tài khoản để đóng');
+            if (showWarning) {
+                showToast('success', 'Bạn chưa lưu thay đổi!');
+            }
         }
     }
 
@@ -265,11 +268,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (closeModalButton) {
-        closeModalButton.addEventListener('click', closeEditModal);
+        closeModalButton.addEventListener('click', () => closeEditModal(true));
     }
 
     if (cancelModalButton) {
-        cancelModalButton.addEventListener('click', closeEditModal);
+        cancelModalButton.addEventListener('click', () => closeEditModal(true));
     }
 
     // Đóng modal khi nhấp chuột ra ngoài
@@ -296,164 +299,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Lắng nghe submit form cập nhật
     if (editAccountForm) {
-        editAccountForm.addEventListener('submit', function (e) {
+        editAccountForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const id = getAccountIdFromUrl();
             if (!id) return;
 
-            // Lấy dữ liệu cũ
-            const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-            const idx = accounts.findIndex(acc => acc.id === id);
-            if (idx === -1) {
-                showToast('error', 'Không tìm thấy tài khoản để cập nhật!');
-                return;
-            }
-            const oldAccount = accounts[idx];
-
-            // Lấy dữ liệu mới từ form
-            const formData = new FormData(editAccountForm);
-            // Xử lý avatar
-            let avatar = oldAccount.avatar || '';
-            const avatarFile = formData.get('file-upload');
-            if (avatarFile && avatarFile.size > 0) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    avatar = e.target.result;
-                    saveUpdate();
-                };
-                reader.readAsDataURL(avatarFile);
-            } else {
-                saveUpdate();
-            }
-
-            function saveUpdate() {
-                // Validate
-                const errors = [];
-                const name = formData.get('fullName').trim();
-                const dob = formData.get('dob');
-                const phone = formData.get('phone').trim();
-                const email = formData.get('email').trim();
-                const address = formData.get('address').trim();
-                const type = formData.get('accountType');
-                // Validate chung
-                if (!name) errors.push('Họ và tên không được để trống!');
-                if (!phone) errors.push('Số điện thoại không được để trống!');
-                if (!/^0[0-9]{9}$/.test(phone)) errors.push('Số điện thoại phải đúng 10 số và bắt đầu bằng 0!');
-                if (!email) errors.push('Email không được để trống!');
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push('Email không đúng định dạng!');
-                if (!dob) errors.push('Ngày sinh không được để trống!');
-                if (!/^\d{4}-\d{2}-\d{2}$/.test(dob)) errors.push('Ngày sinh không đúng định dạng!');
-                if (!address) errors.push('Quê quán không được để trống!');
-                if (!type) errors.push('Loại tài khoản không được để trống!');
-
-                // Kiểm tra trùng email/sđt (trừ chính mình)
-                if (accounts.some((acc, i) => i !== idx && acc.email === email)) errors.push('Email đã tồn tại!');
-                if (accounts.some((acc, i) => i !== idx && acc.phone === phone)) errors.push('Số điện thoại đã tồn tại!');
-
-                // Nếu là sinh viên
-                let studentInfo = undefined;
-                if (type === 'Sinh viên') {
-                    const school = formData.get('school');
-                    const studentId = formData.get('studentId');
-                    const course = formData.get('course');
-                    const major = formData.get('major');
-                    if (!school) errors.push('Trường không được để trống!');
-                    if (!studentId) errors.push('Mã sinh viên không được để trống!');
-                    if (!course) errors.push('Khóa không được để trống!');
-                    if (!major) errors.push('Chuyên ngành không được để trống!');
-                    studentInfo = { school, studentId, course, major };
-                }
-
-                if (errors.length > 0) {
-                    showToast('error', errors.join('<br>'));
+            try {
+                const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+                const accountIndex = accounts.findIndex(acc => acc.id === id);
+                
+                if (accountIndex === -1) {
+                    showToast('error', 'Không tìm thấy tài khoản để cập nhật!');
                     return;
                 }
 
-                // Cập nhật lại object
+                // Lấy dữ liệu từ form
+                const formData = new FormData(this);
                 const updatedAccount = {
-                    ...oldAccount,
-                    name,
-                    dob,
-                    phone,
-                    email,
-                    address,
-                    type,
-                    avatar,
-                    ...(type === 'Sinh viên' ? { studentInfo } : { studentInfo: undefined })
+                    ...accounts[accountIndex],
+                    name: formData.get('fullName'),
+                    dob: formData.get('dob'),
+                    phone: formData.get('phone'),
+                    email: formData.get('email'),
+                    address: formData.get('address'),
+                    type: formData.get('accountType')
                 };
-                accounts[idx] = updatedAccount;
+
+                // Thêm thông tin sinh viên nếu là tài khoản sinh viên
+                if (updatedAccount.type === 'Sinh viên') {
+                    updatedAccount.studentInfo = {
+                        school: formData.get('school'),
+                        studentId: formData.get('studentId'),
+                        course: formData.get('course'),
+                        major: formData.get('major')
+                    };
+                }
+
+                // Cập nhật vào mảng accounts
+                accounts[accountIndex] = updatedAccount;
                 localStorage.setItem('accounts', JSON.stringify(accounts));
 
-                // Cập nhật lại giao diện
-                fillAccountData(updatedAccount);
+                // Cập nhật giao diện
                 displayAccountData(updatedAccount);
-
-                showToast('success', 'Cập nhật thông tin thành công');
-                editAccountModal.classList.add('hidden');
+                closeEditModal(false); // Đóng modal không hiện warning
+                showToast('success', 'Đã cập nhật thông tin thành công!');
+            } catch (err) {
+                console.error('[Lỗi cập nhật tài khoản]', err);
+                showToast('error', 'Có lỗi xảy ra khi cập nhật thông tin!');
             }
         });
-    }
-
-    // Toast notification chuẩn hóa cho xóa, thêm, cập nhật
-    function showToast(type, message) {
-        // Xóa toast cũ nếu có
-        const existingToast = document.querySelector('.toast-custom');
-        if (existingToast) existingToast.remove();
-
-        // Chọn icon và màu theo type
-        let iconHtml = '', bgColor = '';
-        if (type === 'delete') {
-            iconHtml = `<i class="fas fa-trash-alt" style="color:#B45309;font-size:22px;"></i>`;
-            bgColor = '#FDECEA';
-        } else if (type === 'add') {
-            iconHtml = `<i class="fas fa-plus-circle" style="color:#2563EB;font-size:22px;"></i>`;
-            bgColor = '#EFF6FF';
-        } else if (type === 'update' || type === 'success') {
-            iconHtml = `<i class="fas fa-check-circle" style="color:#16A34A;font-size:22px;"></i>`;
-            bgColor = '#E6F4EA';
-        } else if (type === 'error') {
-            iconHtml = `<i class="fas fa-times-circle" style="color:#DC2626;font-size:22px;"></i>`;
-            bgColor = '#FDECEA';
-        } else if (type === 'trash') {
-            iconHtml = `<i class="fas fa-trash-alt" style="color:#B45309;font-size:22px;"></i>`;
-            bgColor = '#FDECEA';
-        }
-
-        // Tạo toast
-        const toast = document.createElement('div');
-        toast.className = 'toast-custom';
-        toast.innerHTML = `
-            <span style="
-                display:inline-flex;align-items:center;justify-content:center;
-                width:40px;height:40px;border-radius:50%;background:${bgColor};margin-right:16px;
-            ">${iconHtml}</span>
-            <span style="color:#22223B;font-size:16px;font-weight:500;">${message}</span>
-        `;
-        toast.style.cssText = `
-            position: fixed;
-            top: 40px;
-            right: 40px;
-            transform: translateX(-50%);
-            background: #fff;
-            color: #22223B;
-            padding: 16px 32px;
-            border-radius: 10px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.15);
-            z-index: 9999;
-            min-width: 320px;
-            max-width: 90vw;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        `;
-        document.body.appendChild(toast);
-        setTimeout(() => { toast.style.opacity = '1'; }, 10);
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
     }
 
     // Khởi tạo

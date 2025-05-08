@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách kỳ thi - Phenikaa University</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/exam.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="page-container">
+        <!-- Thanh bên -->
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <img src="../images/logo.png" alt="Phenikaa University Logo" class="sidebar__logo">
+            </div>
+            <nav class="sidebar__nav">
+                <div class="sidebar__search-container">
+                    <input type="text" placeholder="Tìm kiếm" class="sidebar__search-input">
+                    <i class="fas fa-search sidebar__search-icon"></i>
+                </div>
+                <a href="./index.html" class="sidebar__nav-item">
+                    <img src="../images/users.png" alt="user" class="sidebar__nav-item-icon">
+                    Tài khoản
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Vector.png" alt="partner" class="sidebar__nav-item-icon">
+                    Đối tác
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Video.png" alt="e-learning" class="sidebar__nav-item-icon">
+                    Khóa học (E-learning)
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/ProjectorScreenChart.png" alt="offline class" class="sidebar__nav-item-icon">
+                    Lớp học offline
+                </a>
+                <a href="./exam.html" class="sidebar__nav-item sidebar__nav-item--active">
+                    <img src="../images/Exam.png" alt="exam" class="sidebar__nav-item-icon">
+                    Kỳ thi
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Certificate.png" alt="certificate" class="sidebar__nav-item-icon">
+                    Chứng chỉ
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/ChartPie.png" alt="finance report" class="sidebar__nav-item-icon">
+                    Báo cáo tài chính
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Buildings.png" alt="infrastructure" class="sidebar__nav-item-icon">
+                    Cơ sở hạ tầng
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/SpeakerSimpleHigh.png" alt="news" class="sidebar__nav-item-icon">
+                    Tin tức, thông báo
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Gear.png" alt="settings" class="sidebar__nav-item-icon">
+                    Cấu hình
+                </a>
+            </nav>
+            <div class="sidebar__footer">
+                <div class="sidebar__profile">
+                    <img class="sidebar__profile-avatar" src="../images/avatar.png" alt="User avatar">
+                    <div class="sidebar__profile-info">
+                        <p class="sidebar__profile-name">Trần Hữu Nam</p>
+                        <p class="sidebar__profile-email">namtran94@phenikaa.com</p>
+                    </div>
+                    <button class="sidebar__logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <!-- Nội dung chính -->
+        <main class="main-content">
+            <div class="main-content__header-section">
+                <div>
+                    <nav class="breadcrumbs">
+                        <ol class="breadcrumbs__list">
+                            <li class="breadcrumbs__item">
+                                <a href="#"><i class="fas fa-home"></i></a>
+                            </li>
+                            <li><span class="breadcrumbs__separator">/</span></li>
+                            <li class="breadcrumbs__item">
+                                <a href="#">Kỳ thi</a>
+                            </li>
+                            <li><span class="breadcrumbs__separator">/</span></li>
+                            <li class="breadcrumbs__item breadcrumbs__item--active">Danh sách kỳ thi</li>
+                        </ol>
+                    </nav>
+                    <div class="page-header">
+                        <h1 class="page-header__title">Danh sách kỳ thi</h1>
+                        <div class="page-header__actions">
+                            <button class="button" id="downloadExcelButton">
+                                <img src="../images/ms_excel.svg" alt="excel" class="button__icon"> Tải danh sách
+                            </button>
+                            <button class="button" id="importFileButton">
+                                Nhập từ file <i class="fas fa-chevron-down button__icon button__icon--right"></i>
+                            </button>
+                            <button class="button button--primary" id="openExamModalBtn">
+                                <i class="fas fa-plus button__icon"></i> Thêm kỳ thi
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content__body">
+                <div class="filters-search">
+                    <button class="button filters-search__filter-button">
+                        <img src="../images/Filters lines.png" alt="filter" class="button__icon"> Bộ lọc
+                    </button>
+                    <div class="filters-search__search-container">
+                        <input type="text" placeholder="Tìm kiếm" class="filters-search__search-input">
+                        <i class="fas fa-search filters-search__search-icon"></i>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table-scroll-wrapper">
+                        <table class="data-table exam-table">
+                            <thead class="data-table__header">
+                                <tr>
+                                    <th scope="col">
+                                        <input type="checkbox" class="form-checkbox">
+                                    </th>
+                                    <th scope="col">Mã kỳ thi</th>
+                                    <th scope="col">Tên kỳ thi</th>
+                                    <th scope="col">Khóa học</th>
+                                    <th scope="col">Tên đối tác</th>
+                                    <th scope="col">Ngày thi</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody class="data-table__body">
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi cuối kỳ</strong></td>
+                                    <td><strong>	Nhập môn lập trình C++</strong></td>
+                                    <td>FPT Software</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--blue">Đang diễn ra</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi cuối kỳ</strong></td>
+                                    <td><strong>Nhập môn lập trình Python</strong></td>
+                                    <td>Rikkei Academy</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--green">Hoàn thành</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi giữa kỳ</strong></td>
+                                    <td><strong>	Nhập môn lập trình C++</strong></td>
+                                    <td>Rikkei Academy</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--green">Hoàn thành</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi giữa kỳ</strong></td>
+                                    <td><strong>Nhập môn lập trình Python</strong></td>
+                                    <td>FPT</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--blue">Đang diễn ra</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi giữa kỳ</strong></td>
+                                    <td><strong>Nhập môn lập trình Python</strong></td>
+                                    <td>Rikkei Academy</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--blue">Đang diễn ra</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi giữa kỳ</strong></td>
+                                    <td><strong>Nhập môn lập trình Python</strong></td>
+                                    <td>Rikkei Academy</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--green">Hoàn thành</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="form-checkbox"></td>
+                                    <td><strong>TK002341</strong></td>
+                                    <td><strong>Thi giữa kỳ</strong></td>
+                                    <td><strong>	Nhập môn lập trình C++</strong></td>
+                                    <td>Rikkei Academy</td>
+                                    <td>30/11/2024</td>
+                                    <td><span class="exam-status exam-status--green">Hoàn thành</span></td>
+                                    <td>
+                                        <div class="data-table__actions">
+                                            <button class="data-table__action-button data-table__action-button--delete">
+                                                <img src="../images/trash-2.png" alt="delete">
+                                            </button>
+                                            <button class="data-table__action-button data-table__action-button--edit">
+                                                <img src="../images/edit-2.png" alt="edit">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <button class="pagination__button" disabled>
+                        <i class="fas fa-chevron-left pagination__button-icon pagination__button-icon--left"></i> Trang trước
+                    </button>
+                    <span class="pagination__info">Trang <span class="pagination__info-page">1</span> trong <span class="pagination__info-page">152</span></span>
+                    <button class="pagination__button">
+                        Trang sau <i class="fas fa-chevron-right pagination__button-icon pagination__button-icon--right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Modal tạo kỳ thi -->
+    <div id="examModal" class="modal-overlay hidden">
+        <div class="modal-content exam-modal-content">
+            <div class="exam-modal__body">
+                <div class="exam-modal__left">
+                    <h2 class="exam-modal__title">Thêm kỳ thi</h2>
+                    <div class="exam-modal__desc">
+                        <span>Thông tin chung</span>
+                        <p>Cập nhật thông tin cơ bản về kỳ thi</p>
+                    </div>
+                </div>
+                <form class="exam-modal__form" id="createExamForm">
+                    <div class="form-group">
+                        <label for="examCourse" class="form__label">Khóa học</label>
+                        <select id="examCourse" name="examCourse" class="form__select">
+                            <option>Nhập môn lập trình C++ KH052424</option>
+                            <option>Nhập môn lập trình Python KH052425</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="examName" class="form__label">Tên kỳ thi</label>
+                        <input type="text" id="examName" name="examName" class="form__input" placeholder="Nhập tên kỳ thi">
+                    </div>
+                    <div class="form-group">
+                        <label for="examDate" class="form__label">Ngày thi</label>
+                        <div class="form__input-container form__input-container--with-icon">
+                            <!-- <img src="../images/calendar.svg" alt="calendar" class="form__input-icon"> -->
+                            <input type="date" id="examDate" name="examDate" class="form__input form__input--with-icon">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="examDesc" class="form__label">Mô tả kỳ thi</label>
+                        <textarea id="examDesc" name="examDesc" class="form__input" rows="3" placeholder="Nhập mô tả kỳ thi"></textarea>
+                    </div>
+                    <div class="exam-modal__footer">
+                        <button type="button" class="button modal__footer-button modal__footer-button--cancel" id="cancelExamModalBtn">Hủy</button>
+                        <button type="submit" class="button modal__footer-button modal__footer-button--submit button--primary">Tạo kỳ thi</button>
+                    </div>
+                </form>
+            </div>
+            <button class="modal__close-button" id="closeExamModalBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <!-- Modal xác nhận xóa kỳ thi -->
+    <div id="deleteConfirmModal" class="modal-overlay hidden">
+        <div class="confirm-modal-content">
+            <h2 class="confirm-modal__title">Xác nhận</h2>
+            <p class="confirm-modal__text">Bạn có chắc chắn muốn xóa kỳ thi này không?</p>
+            <div class="confirm-modal__footer">
+                <button id="cancelDeleteButton" class="button modal__footer-button modal__footer-button--cancel">Hủy</button>
+                <button id="confirmDeleteButton" class="button modal__footer-button button--danger">Xóa kỳ thi</button>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Modal logic
+    document.getElementById('openExamModalBtn').onclick = function() {
+        document.getElementById('examModal').classList.remove('hidden');
+    };
+    document.getElementById('closeExamModalBtn').onclick = function() {
+        document.getElementById('examModal').classList.add('hidden');
+    };
+    document.getElementById('cancelExamModalBtn').onclick = function() {
+        document.getElementById('examModal').classList.add('hidden');
+    };
+    document.getElementById('createExamForm').onsubmit = function(e) {
+        e.preventDefault();
+        // Xử lý tạo kỳ thi ở đây
+        document.getElementById('examModal').classList.add('hidden');
+    };
+    </script>
+    <script src="../js/exam.account.js"></script>
+</body>
+</html> 

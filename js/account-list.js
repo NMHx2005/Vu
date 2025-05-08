@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Các phần tử Modal
     const addAccountModal = document.getElementById('addAccountModal');
     const closeModalButton = document.getElementById('closeModalButton');
-    const cancelModalButton = document.getElementById('cancelModalButton');
+    const cancelModalButton = document.querySelector('.modal__footer-button--cancel');
     const submitModalButton = document.querySelector('.modal__footer-button--submit');
     const studentInfoSection = document.getElementById('studentInfoSectionContainer');
     const accountTypeSelect = document.getElementById('accountType');

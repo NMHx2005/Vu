@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin kỳ thi</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/exam.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" />
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <img src="../images/logo.png" alt="Phenikaa University Logo" class="sidebar__logo">
+            </div>
+            <nav class="sidebar__nav">
+                <div class="sidebar__search-container">
+                    <input type="text" placeholder="Tìm kiếm" class="sidebar__search-input">
+                    <i class="fas fa-search sidebar__search-icon"></i>
+                </div>
+                <a href="./index.html" class="sidebar__nav-item">
+                    <img src="../images/users.png" alt="user" class="sidebar__nav-item-icon">
+                    Tài khoản
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Vector.png" alt="partner" class="sidebar__nav-item-icon">
+                    Đối tác
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Video.png" alt="e-learning" class="sidebar__nav-item-icon">
+                    Khóa học (E-learning)
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/ProjectorScreenChart.png" alt="offline class" class="sidebar__nav-item-icon">
+                    Lớp học offline
+                </a>
+                <a href="./exam.html" class="sidebar__nav-item sidebar__nav-item--active">
+                    <img src="../images/Exam.png" alt="exam" class="sidebar__nav-item-icon">
+                    Kỳ thi
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Certificate.png" alt="certificate" class="sidebar__nav-item-icon">
+                    Chứng chỉ
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/ChartPie.png" alt="finance report" class="sidebar__nav-item-icon">
+                    Báo cáo tài chính
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Buildings.png" alt="infrastructure" class="sidebar__nav-item-icon">
+                    Cơ sở hạ tầng
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/SpeakerSimpleHigh.png" alt="news" class="sidebar__nav-item-icon">
+                    Tin tức, thông báo
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <img src="../images/Gear.png" alt="settings" class="sidebar__nav-item-icon">
+                    Cấu hình
+                </a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="main-content__header-section">
+                <nav class="breadcrumbs" style="margin-top:24px;">
+                    <ol class="breadcrumbs__list">
+                        <li class="breadcrumbs__item"><a href="#"><i class="fas fa-home"></i></a></li>
+                        <li><span class="breadcrumbs__separator">/</span></li>
+                        <li class="breadcrumbs__item"><a href="#">Tài khoản</a></li>
+                        <li><span class="breadcrumbs__separator">/</span></li>
+                        <li class="breadcrumbs__item"><a href="exam.html">Danh sách KỲ THI</a></li>
+                        <li><span class="breadcrumbs__separator">/</span></li>
+                        <li class="breadcrumbs__item breadcrumbs__item--active" id="breadcrumbExamName">Thông tin kỳ thi</li>
+                    </ol>
+                </nav>
+                <div style="margin: 18px 0 0 0;">
+                    <h1 class="page-header__title" id="examDetailTitle">Thông tin kỳ thi</h1>
+                </div>
+            </div>
+            <div class="main-content__body">
+                <div class="exam-detail-box" id="examDetailBox" style="display:none;"></div>
+                <div id="examNotFound" style="display:none;color:#d32f2f;font-size:1.2rem;margin:32px 0 0 24px;">Không tìm thấy dữ liệu kỳ thi!</div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/exam-detail.js"></script>
+</body>
+</html> 
