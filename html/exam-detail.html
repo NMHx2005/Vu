@@ -81,6 +81,36 @@
             <div class="main-content__body">
                 <div class="exam-detail-box" id="examDetailBox" style="display:none;"></div>
                 <div id="examNotFound" style="display:none;color:#d32f2f;font-size:1.2rem;margin:32px 0 0 24px;">Không tìm thấy dữ liệu kỳ thi!</div>
+                <div id="examStudentSection" style="margin-top:0;">
+                    <div class="student-table-card">
+                        <div class="student-table-header">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <span style="font-weight:700;font-size:1.18rem;color:#22223B;">Học viên</span>
+                                <span class="student-table-badge"><span id="studentCount">0</span></span>
+                            </div>
+                            <button id="downloadStudentExcel" class="button-excel"><img src="../images/ms_excel.svg" style="width:22px;height:22px;"> Tải danh sách excel</button>
+                        </div>
+                        <div class="student-table-wrapper" style="overflow-x:auto;margin-top:18px;">
+                            <table class="student-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:48px;text-align:center;padding:0 0 0 16px;"></th>
+                                        <th style="width:120px;text-align:left;">Mã học viên</th>
+                                        <th style="width:220px;text-align:left;">Tên học viên</th>
+                                        <th style="width:320px;text-align:left;">Email</th>
+                                        <th style="width:120px;text-align:center;">Tham gia thi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="student-pagination">
+                            <button id="prevPageBtn" class="student-pagination-btn" disabled><span style="font-size:1.2em;">&#8592;</span> Trang trước</button>
+                            <div class="student-pagination-info"><span id="paginationInfo">Trang 1 trong 1</span></div>
+                            <button id="nextPageBtn" class="student-pagination-btn">Trang sau <span style="font-size:1.2em;">&#8594;</span></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

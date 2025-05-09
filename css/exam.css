@@ -256,70 +256,135 @@
     .exam-detail-row { flex-direction: column; gap: 12px; }
 } 
 
+/* ========== Student Table Card ========== */
+.student-table-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #E4E7EF;
+  padding: 24px;
+  overflow: hidden;
+}
+.student-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.student-table-badge {
+  background: #FFF1EB;
+  color: #B9381E;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 16px;
+  padding: 2px 12px;
+  margin-left: 8px;
+}
+.button-excel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #E4E7EF;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #22223B;
+  transition: background 0.15s, border 0.15s;
+}
+.button-excel:hover {
+  background: #F8FAFC;
+  border-color: #B9381E;
+}
 
-.exam-detail-box {
-            background: #fff;
-            border-radius: 8px;
-            border: 1px solid #E4E7EF;
-            padding: 24px;
-            margin-top: 18px;
-            margin-bottom: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            box-shadow: none;
-        }
-        .exam-detail-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #101828;
-            margin-bottom: 8px;
-        }
-        .exam-detail-rows {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-        .exam-detail-row {
-            display: flex;
-            flex-direction: row;
-            gap: 24px;
-        }
-        .exam-detail-col {
-            flex: 1 1 0;
-            min-width: 220px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .exam-detail-label {
-            color: #667085;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .exam-detail-value {
-            font-size: 1.13rem;
-            font-weight: 600;
-            color: #1D2939;
-        }
-        .exam-detail-status {
-            font-size: 1.13rem;
-            font-weight: 600;
-        }
-        .exam-detail-desc-label {
-            color: #667085;
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-        .exam-detail-desc {
-            color: #101828;
-            font-size: 1.08rem;
-            background: #fff;
-            border-radius: 6px;
-            padding: 0;
-        }
-        @media (max-width: 700px) {
-            .exam-detail-box { padding: 12px 6px; }
-            .exam-detail-row { flex-direction: column; gap: 12px; }
-        }
+/* ========== Student Table ========== */
+.student-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0;
+}
+.student-table thead tr {
+  background: #F8FAFC;
+  height: 44px;
+}
+.student-table th {
+  font-weight: 600;
+  color: #667085;
+  font-size: 1rem;
+  padding: 0 0 0 16px;
+  border: none;
+  background: #F8FAFC;
+}
+.student-table tbody tr {
+  height: 72px;
+  background: #fff;
+  transition: none;
+}
+.student-table tbody tr:nth-child(even) {
+  background: #F8FAFC;
+}
+.student-table td {
+  border: none;
+  padding: 0 0 0 0;
+  vertical-align: middle;
+}
+.student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+.student-name {
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: #22223B;
+}
+.student-email {
+  font-size: 1rem;
+  color: #667085;
+}
+.student-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #B9381E;
+  border-radius: 6px;
+  vertical-align: middle;
+}
+
+/* ========== Pagination ========== */
+.student-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 0;
+  margin: 18px 0 0 0;
+}
+.student-pagination-btn {
+  padding: 8px 24px;
+  border-radius: 8px;
+  border: 1.5px solid #E4E7EF;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  color: #22223B;
+  font-size: 1rem;
+  transition: background 0.15s, border 0.15s, color 0.15s;
+}
+.student-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #B0B3B9;
+  border-color: #E4E7EF;
+  background: #F8FAFC;
+}
+.student-pagination-info {
+  color: #6b7280;
+  font-size: 1rem;
+  text-align: center;
+  flex: 1;
+}
