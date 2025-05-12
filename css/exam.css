@@ -16,6 +16,9 @@
     box-sizing: border-box;
     letter-spacing: 0.01em;
 }
+#studentTableBody {
+    padding: 20px!important;
+}
 .exam-status--blue {
     background: #eaf4fe;
     color: #2994d1;
@@ -325,7 +328,7 @@
 }
 .student-table td {
   border: none;
-  padding: 0 0 0 0;
+  padding: 0 0 0 10px;
   vertical-align: middle;
 }
 .student-avatar {
