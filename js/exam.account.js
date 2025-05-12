@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 16px 32px;
             border-radius: 10px;
             box-shadow: 0 2px 16px rgba(0,0,0,0.15);
-            z-index: 9999;
+            z-index: 999999;
             min-width: 320px;
             max-width: 90vw;
             display: flex;
