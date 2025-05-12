@@ -108,9 +108,6 @@ function renderStudentTable() {
     const pageStudents = students.slice(startIdx, endIdx);
     tableBody.innerHTML = pageStudents.map((s, idx) => `
         <tr style="height:72px;background:${(startIdx+idx)%2===0?'#fff':'#F8FAFC'};">
-            <td style="text-align:center;padding:0 0 0 16px;">
-                <input type="checkbox" class="student-checkbox student-join-checkbox" data-idx="${startIdx+idx}" ${s.joined ? 'checked' : ''}>
-            </td>
             <td class="student-name">${s.id}</td>
             <td>
                 <div style="display:flex;align-items:center;gap:12px;">
@@ -120,7 +117,7 @@ function renderStudentTable() {
             </td>
             <td><div class="student-email">${s.email}</div></td>
             <td style="text-align:center;">
-                <input type="checkbox" class="student-checkbox" ${s.joined ? 'checked' : ''} disabled>
+                <input type="checkbox" class="student-join-checkbox" data-idx="${startIdx+idx}" ${s.joined ? 'checked' : ''}>
             </td>
         </tr>
     `).join('');

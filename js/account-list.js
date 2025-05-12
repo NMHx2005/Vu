@@ -388,6 +388,84 @@ document.addEventListener('DOMContentLoaded', function() {
                 editAccountModal.classList.add('hidden');
             });
         }
+
+        // Xử lý form cập nhật thông tin
+        const editAccountForm = document.getElementById('editAccountForm');
+        if (editAccountForm) {
+            editAccountForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(editAccountForm);
+                const avatarFile = formData.get('file-upload');
+                const accountId = getAccountIdFromUrl();
+
+                const validationErrors = validateForm(formData);
+                if (validationErrors.length > 0) {
+                    showValidationErrors(validationErrors);
+                    return;
+                }
+
+                let avatarBase64 = null;
+                try {
+                    avatarBase64 = await readAvatarFileAsync(avatarFile);
+                } catch (err) {
+                    showToast('error', err.message);
+                    return;
+                }
+
+                const email = formData.get('email');
+                const phone = formData.get('phone');
+                const currentAccount = getAccountById(accountId);
+
+                // Kiểm tra email trùng lặp (trừ tài khoản hiện tại)
+                if (accounts.some(acc => acc.email === email && acc.id !== accountId)) {
+                    showToast('error', 'Email đã tồn tại trong hệ thống!');
+                    return;
+                }
+
+                // Kiểm tra số điện thoại trùng lặp (trừ tài khoản hiện tại)
+                if (accounts.some(acc => acc.phone === phone && acc.id !== accountId)) {
+                    showToast('error', 'Số điện thoại đã tồn tại trong hệ thống!');
+                    return;
+                }
+
+                // Cập nhật thông tin tài khoản
+                const updatedAccount = {
+                    ...currentAccount,
+                    name: formData.get('fullName').trim(),
+                    email: email.trim(),
+                    dob: convertDateToISO(formData.get('dob')),
+                    phone: formatPhoneNumber(formData.get('phone').trim()),
+                    address: formData.get('address').trim(),
+                    type: formData.get('accountType'),
+                    avatar: avatarBase64 || currentAccount.avatar
+                };
+
+                if (updatedAccount.type === 'Sinh viên') {
+                    updatedAccount.studentInfo = {
+                        school: formData.get('school') || '',
+                        studentId: formData.get('studentId') || '',
+                        course: formData.get('course') || '',
+                        major: formData.get('major') || ''
+                    };
+                } else {
+                    delete updatedAccount.studentInfo;
+                }
+
+                // Cập nhật vào mảng accounts
+                const accountIndex = accounts.findIndex(acc => acc.id === accountId);
+                if (accountIndex !== -1) {
+                    accounts[accountIndex] = updatedAccount;
+                    saveAccountsToLocalStorage();
+                    showToast('success', 'Cập nhật thông tin thành công!');
+                    // Cập nhật giao diện
+                    fillAccountData(updatedAccount);
+                    // Đóng modal
+                    if (editAccountModal) {
+                        editAccountModal.classList.add('hidden');
+                    }
+                }
+            });
+        }
     }
 
     function openAddAccountModal() {

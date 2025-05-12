@@ -134,8 +134,15 @@ document.addEventListener('DOMContentLoaded', function() {
         else partner = 'FPT';
         const today = new Date().toISOString().slice(0,10);
         const status = date >= today ? 'Đang diễn ra' : 'Hoàn thành';
-        if (!course || !name || !date) {
-            alert('Vui lòng nhập đủ thông tin!');
+        // Validate chi tiết
+        const errors = [];
+        if (!course) errors.push('Vui lòng chọn khóa học!');
+        if (!name) errors.push('Tên kỳ thi không được để trống!');
+        if (!date) errors.push('Ngày thi không được để trống!');
+        if (!description) errors.push('Mô tả kỳ thi không được để trống!');
+        if (date && date < today) errors.push('Ngày thi phải lớn hơn hoặc bằng ngày hiện tại!');
+        if (errors.length > 0) {
+            showToast('error', errors.join('\n'));
             return;
         }
         if (editExamId) {

@@ -76,15 +76,32 @@ if (addAccountModal) {
 
 // Xử lý upload ảnh
 if (fileInput && avatarPreview) {
-    fileInput.addEventListener('change', (event) => {
+    fileInput.addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                avatarPreview.innerHTML = `<img src="${e.target.result}" alt="Avatar Preview" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`; // Added border-radius
-                 console.log('Avatar preview updated.');
-            };
-            reader.readAsDataURL(file);
+            try {
+                // Kiểm tra định dạng file
+                if (!['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'].includes(file.type)) {
+                    showToast('error', 'Định dạng ảnh không hợp lệ! Chỉ hỗ trợ PNG, JPEG, GIF, SVG.');
+                    return;
+                }
+                // Kiểm tra kích thước file
+                if (file.size > 2 * 1024 * 1024) {
+                    showToast('error', 'Ảnh quá lớn! Kích thước tối đa là 2MB.');
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    if (avatarPreview) {
+                        avatarPreview.innerHTML = `<img src="${e.target.result}" alt="Avatar Preview" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                        console.log('Avatar preview updated.');
+                    }
+                };
+                reader.readAsDataURL(file);
+            } catch (error) {
+                console.error('Error reading file:', error);
+                showToast('error', 'Lỗi khi đọc file ảnh!');
+            }
         }
     });
 }
@@ -92,18 +109,12 @@ if (fileInput && avatarPreview) {
 // Xử lý form thông tin sinh viên
 const toggleStudentInfo = () => {
     console.log('Toggling student info section...');
-    // Select the container that holds both description and form for student info
     if (accountTypeSelect && studentInfoSectionContainer) {
         const selectedValue = accountTypeSelect.value.trim();
         console.log(`Account type selected: "${selectedValue}"`);
         const isStudent = selectedValue === 'Sinh viên';
         studentInfoSectionContainer.classList.toggle('hidden', !isStudent);
         console.log(`Student section container hidden: ${!isStudent}`);
-    } else {
-         console.error('Required elements for toggleStudentInfo not found:', {
-            accountTypeSelectExists: !!accountTypeSelect,
-            studentInfoSectionContainerExists: !!studentInfoSectionContainer
-        });
     }
 };
 
@@ -112,8 +123,6 @@ if (accountTypeSelect) {
     accountTypeSelect.addEventListener('change', toggleStudentInfo);
     // Run on load
     toggleStudentInfo();
-} else {
-    console.error('Account type select (#accountType) not found.');
 }
 
 
@@ -122,38 +131,31 @@ const openDeleteModal = () => {
     if (deleteConfirmModal) {
         deleteConfirmModal.classList.remove('hidden');
         console.log('Delete Confirm Modal opened');
-    } else {
-        console.error('Delete Confirm Modal element not found for opening');
     }
 };
+
 const closeDeleteModal = () => {
     if (deleteConfirmModal) {
         deleteConfirmModal.classList.add('hidden');
         console.log('Delete Confirm Modal closed');
-    } else {
-        console.error('Delete Confirm Modal element not found for closing');
     }
 };
 
 // Gán sự kiện mở modal Xóa (Event Delegation on Table Body)
-if (tableBody) {
-    tableBody.addEventListener('click', (event) => {
-        // Find the closest delete button ancestor
-        const deleteButton = event.target.closest('.data-table__action-button--delete');
-        if (deleteButton) {
-            console.log('Delete button clicked in table.');
-            openDeleteModal();
-        }
-    });
-} else {
-    console.error('Table body (.data-table__body) not found for delete button delegation.');
-}
+document.addEventListener('click', (event) => {
+    const deleteButton = event.target.closest('.data-table__action-button--delete');
+    if (deleteButton) {
+        console.log('Delete button clicked in table.');
+        openDeleteModal();
+    }
+});
 
 // Gán sự kiện đóng modal Xóa
 if (cancelDeleteButton) {
     console.log('Cancel Delete button found, attaching listener.');
     cancelDeleteButton.addEventListener('click', closeDeleteModal);
 }
+
 if (confirmDeleteButton) {
     console.log('Confirm Delete button found, attaching listener.');
     confirmDeleteButton.addEventListener('click', () => {
