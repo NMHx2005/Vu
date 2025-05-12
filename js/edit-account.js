@@ -315,6 +315,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Lấy dữ liệu từ form
                 const formData = new FormData(this);
+
+                // Validate dữ liệu TRƯỚC KHI cập nhật
+                const errors = [];
+                if (!formData.get('fullName') || formData.get('fullName').trim() === '') errors.push('Họ và tên không được để trống!');
+                if (!formData.get('email') || !/^[^@]+@[^@]+\.[^@]+$/.test(formData.get('email'))) errors.push('Email không hợp lệ!');
+                if (!formData.get('phone') || !/^0\d{9}$/.test(formData.get('phone'))) errors.push('Số điện thoại không hợp lệ!');
+                if (!formData.get('dob') || formData.get('dob').trim() === '') errors.push('Ngày sinh không được để trống!');
+                if (!formData.get('address') || formData.get('address').trim() === '') errors.push('Quê quán không được để trống!');
+                if (!formData.get('accountType') || formData.get('accountType').trim() === '') errors.push('Loại tài khoản không được để trống!');
+                if (formData.get('accountType') === 'Sinh viên') {
+                    if (!formData.get('school') || formData.get('school').trim() === '') errors.push('Trường không được để trống!');
+                    if (!formData.get('studentId') || formData.get('studentId').trim() === '') errors.push('Mã sinh viên không được để trống!');
+                    if (!formData.get('course') || formData.get('course').trim() === '') errors.push('Khóa học không được để trống!');
+                    if (!formData.get('major') || formData.get('major').trim() === '') errors.push('Chuyên ngành không được để trống!');
+                }
+                if (errors.length > 0) {
+                    showToast('error', errors.map(e => `• ${e}`).join('<br>'));
+                    return;
+                }
+
+                // Nếu không có lỗi mới tiến hành cập nhật dữ liệu
                 const updatedAccount = {
                     ...accounts[accountIndex],
                     name: formData.get('fullName'),
@@ -360,25 +381,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     displayAccountData(updatedAccount);
                     closeEditModal(false); // Đóng modal không hiện warning
                     showToast('success', 'Đã cập nhật thông tin thành công!');
-                }
-
-                // Validate dữ liệu
-                const errors = [];
-                if (!formData.get('fullName') || formData.get('fullName').trim() === '') errors.push('Họ và tên không được để trống!');
-                if (!formData.get('email') || !/^[^@]+@[^@]+\.[^@]+$/.test(formData.get('email'))) errors.push('Email không hợp lệ!');
-                if (!formData.get('phone') || !/^0\d{9}$/.test(formData.get('phone'))) errors.push('Số điện thoại không hợp lệ!');
-                if (!formData.get('dob') || formData.get('dob').trim() === '') errors.push('Ngày sinh không được để trống!');
-                if (!formData.get('address') || formData.get('address').trim() === '') errors.push('Quê quán không được để trống!');
-                if (!formData.get('accountType') || formData.get('accountType').trim() === '') errors.push('Loại tài khoản không được để trống!');
-                if (formData.get('accountType') === 'Sinh viên') {
-                    if (!formData.get('school') || formData.get('school').trim() === '') errors.push('Trường không được để trống!');
-                    if (!formData.get('studentId') || formData.get('studentId').trim() === '') errors.push('Mã sinh viên không được để trống!');
-                    if (!formData.get('course') || formData.get('course').trim() === '') errors.push('Khóa học không được để trống!');
-                    if (!formData.get('major') || formData.get('major').trim() === '') errors.push('Chuyên ngành không được để trống!');
-                }
-                if (errors.length > 0) {
-                    showToast('error', errors.join('\n'));
-                    return;
                 }
             } catch (err) {
                 console.error('[Lỗi cập nhật tài khoản]', err);

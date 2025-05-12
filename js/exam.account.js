@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else partner = 'FPT';
         const today = new Date().toISOString().slice(0,10);
         const status = date >= today ? 'Đang diễn ra' : 'Hoàn thành';
+
         // Validate chi tiết
         const errors = [];
         if (!course) errors.push('Vui lòng chọn khóa học!');
@@ -141,28 +142,34 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!date) errors.push('Ngày thi không được để trống!');
         if (!description) errors.push('Mô tả kỳ thi không được để trống!');
         if (date && date < today) errors.push('Ngày thi phải lớn hơn hoặc bằng ngày hiện tại!');
+
+        // Kiểm tra trùng lặp tên kỳ thi
+        if (name && exams.some(exam => exam.name === name && exam.id !== editExamId)) {
+            errors.push('Tên kỳ thi đã tồn tại trong hệ thống!');
+        }
+
         if (errors.length > 0) {
-            showToast('error', errors.join('\n'));
+            showToast('error', errors.map(e => `• ${e}`).join('<br>'));
             return;
         }
+
+        // Nếu không có lỗi, tiến hành cập nhật/thêm mới
         if (editExamId) {
             const idx = exams.findIndex(e => e.id === editExamId);
             if (idx !== -1) {
                 exams[idx] = { ...exams[idx], course, name, date, description, partner, status };
                 saveExams();
-                searchExams(searchInput.value); // Cập nhật lại kết quả tìm kiếm
+                searchExams(searchInput.value);
                 closeModal();
                 showToast('success', 'Cập nhật kỳ thi thành công!');
-                return;
             }
         } else {
             const newId = generateExamId();
             exams.push({ id: newId, course, name, date, description, partner, status });
             saveExams();
-            searchExams(searchInput.value); // Cập nhật lại kết quả tìm kiếm
+            searchExams(searchInput.value);
             closeModal();
             showToast('success', 'Tạo kỳ thi thành công!');
-            return;
         }
     };
 
@@ -346,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 };
                             }).filter(Boolean);
                             if (errors.length > 0) {
-                                showToast('error', errors.join('<br>'));
+                                showToast('error', errors.map(e => `• ${e}`).join('<br>'));
                                 return;
                             }
                             exams = [...exams, ...newExams];
